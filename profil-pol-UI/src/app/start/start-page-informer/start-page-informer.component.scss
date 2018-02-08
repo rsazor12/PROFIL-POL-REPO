@@ -1,0 +1,14 @@
+.page-informer {
+  background-image: url("../../../assets/images/backgrounds/start-page-informer-bg.jpg");
+  background-size: cover;
+}
+
+button {
+  //display:inline-block; //Typically a button wouldn't need its own line
+  margin:0 auto;
+  //width: 200px; //or whatever
+  position: relative;
+  border: 1px solid white;
+  left:0;
+  right:0;
+}

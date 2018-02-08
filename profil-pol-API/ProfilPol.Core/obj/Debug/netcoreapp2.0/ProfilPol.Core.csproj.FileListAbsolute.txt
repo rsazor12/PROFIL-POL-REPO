@@ -1,0 +1,9 @@
+C:\Users\kbielski\Documents\MOJE_PLIKI\PROJEKTY\profil-pol\profil-pol-API\ProfilPol.Api\ProfilPol.Core\bin\Debug\netcoreapp2.0\ProfilPol.Core.deps.json
+C:\Users\kbielski\Documents\MOJE_PLIKI\PROJEKTY\profil-pol\profil-pol-API\ProfilPol.Api\ProfilPol.Core\bin\Debug\netcoreapp2.0\ProfilPol.Core.dll
+C:\Users\kbielski\Documents\MOJE_PLIKI\PROJEKTY\profil-pol\profil-pol-API\ProfilPol.Api\ProfilPol.Core\bin\Debug\netcoreapp2.0\ProfilPol.Core.pdb
+C:\Users\kbielski\Documents\MOJE_PLIKI\PROJEKTY\profil-pol\profil-pol-API\ProfilPol.Api\ProfilPol.Core\obj\Debug\netcoreapp2.0\ProfilPol.Core.csprojResolveAssemblyReference.cache
+C:\Users\kbielski\Documents\MOJE_PLIKI\PROJEKTY\profil-pol\profil-pol-API\ProfilPol.Api\ProfilPol.Core\obj\Debug\netcoreapp2.0\ProfilPol.Core.csproj.CoreCompileInputs.cache
+C:\Users\kbielski\Documents\MOJE_PLIKI\PROJEKTY\profil-pol\profil-pol-API\ProfilPol.Api\ProfilPol.Core\obj\Debug\netcoreapp2.0\ProfilPol.Core.AssemblyInfoInputs.cache
+C:\Users\kbielski\Documents\MOJE_PLIKI\PROJEKTY\profil-pol\profil-pol-API\ProfilPol.Api\ProfilPol.Core\obj\Debug\netcoreapp2.0\ProfilPol.Core.AssemblyInfo.cs
+C:\Users\kbielski\Documents\MOJE_PLIKI\PROJEKTY\profil-pol\profil-pol-API\ProfilPol.Api\ProfilPol.Core\obj\Debug\netcoreapp2.0\ProfilPol.Core.dll
+C:\Users\kbielski\Documents\MOJE_PLIKI\PROJEKTY\profil-pol\profil-pol-API\ProfilPol.Api\ProfilPol.Core\obj\Debug\netcoreapp2.0\ProfilPol.Core.pdb

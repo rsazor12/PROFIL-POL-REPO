@@ -1,0 +1,61 @@
+<div class="mb-5 container border">
+  <div class="row">
+    <div class="col-5 border p-5" style="height:500px">
+        <form class="">
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Imie</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Imie">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Email</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="np. JanKowalski@mail.com">
+            </div>
+
+            <div class="form-group">
+              <label for="message">Wiadomosc</label>
+              <textarea class="form-control textarea " id="message" rows="3" placeholder="Napisz wiadomosc tutaj"></textarea>
+            </div>
+            <div class="text-center mt-5">
+              <button type="submit" class="btn btn-primary mb-2">Wyslij</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-7 border p-3" style="height:500px">
+
+        <div class="mt-2  d-flex justify-content-around">
+            <div class="text-center border p-2 w-100">
+
+              <h5><i class="fa fa-home mr-3"></i> Adres</h5>
+              <div class="">
+                <div class="">
+                  <span>Sadek 41</span>
+                </div>
+                <div class="">
+                  <span>34-620 Jodlownik</span>
+                </div>
+              </div>
+
+            </div>
+            <div class="border p-2 w-100">
+                <h5><i class="fa fa-envelope mr-3" style="font-size:18px;"></i> Email </h5>
+                <div class="">
+                  <span>biuro@profil-pol.com</span>
+                </div>
+            </div>
+            <div class="border p-2 w-100">
+                <p><i class="fa fa-phone mr-3"></i> + 01 234 567 88</p>
+                <p><i class="fa fa-mobile mr-4" style="font-size:20px;"></i>+ 01 234 567 89</p>
+            </div>
+        </div>
+
+        <div class="mt-4">
+          <agm-map [latitude]="lat" [longitude]="lng" >
+              <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          </agm-map>
+        </div>
+
+    </div>
+  </div>
+</div>
