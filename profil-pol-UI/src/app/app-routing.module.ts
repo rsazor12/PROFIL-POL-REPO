@@ -1,3 +1,5 @@
+import { ProductionStatusComponent } from './production-status/production-status.component';
+import { LoginComponent } from './forms/login/login.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
 import { StartComponent } from './start/start.component';
 import { NgModule } from '@angular/core';
@@ -9,11 +11,13 @@ import { PoradnikComponent } from './poradnik/poradnik.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'start' },
-  { path: 'start', component: StartComponent },
+  { path: 'start', component:  ProductionStatusComponent}, // StartComponent
   { path: 'oferta', component: OfertaComponent },
   { path: 'kontakt', component: KontaktComponent },
   { path: 'poradnik', component: PoradnikComponent },
-  { path: 'galeria', component: GaleriaComponent }
+  { path: 'galeria', component: GaleriaComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'production-status', component: ProductionStatusComponent }
 ];
 
 @NgModule({

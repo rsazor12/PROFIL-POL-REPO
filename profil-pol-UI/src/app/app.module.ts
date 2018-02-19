@@ -1,3 +1,4 @@
+import { OrdersService } from './shared/services/orders.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +23,9 @@ import { AgmCoreModule } from '@agm/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GarageCustomComponent } from './shared/garage-custom/garage-custom.component';
+import { LoginComponent } from './forms/login/login.component';
+import { ProductionStatusComponent } from './production-status/production-status.component';
+import { CommonPageService } from './shared/services/common-page.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,9 @@ import { GarageCustomComponent } from './shared/garage-custom/garage-custom.comp
     PoradnikComponent,
     GarageCardComponent,
     FooterComponent,
-    GarageCustomComponent
+    GarageCustomComponent,
+    LoginComponent,
+    ProductionStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +57,10 @@ import { GarageCustomComponent } from './shared/garage-custom/garage-custom.comp
     }),
     AngularFontAwesomeModule
   ],
-  providers: [],
+  providers: [
+    CommonPageService,
+    OrdersService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

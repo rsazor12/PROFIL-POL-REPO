@@ -1,6 +1,8 @@
+import { CommonPageService } from './../services/common-page.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+declare var $: any;
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -8,9 +10,20 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router: Router) { }
+
+  constructor(
+    private router: Router,
+    private commonPageService: CommonPageService
+  ) { }
 
   ngOnInit() {
+    $(window).on('scroll', function() {
+      if ($(window).scrollTop()) {
+        $('nav').addClass('black');
+      } else {
+        $('nav').removeClass('black');
+      }
+    });
   }
 
   gotoStartPage() {
@@ -31,6 +44,14 @@ export class NavbarComponent implements OnInit {
 
   gotoGaleriaPage() {
     this.router.navigate(['galeria']);
+  }
+
+  gotoProductionStatusPage() {
+    if (!this.commonPageService.loginStatus) {
+      this.router.navigate(['login']);
+    } else {
+      this.router.navigate(['production-status']);
+    }
   }
 
 }
