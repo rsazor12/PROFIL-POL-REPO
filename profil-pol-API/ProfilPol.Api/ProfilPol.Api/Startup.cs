@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using ProfilPol.Core.Domain.Repositories;
+using ProfilPol.Core.Repositories;
 using ProfilPol.Infrastructure.Mappers;
 using ProfilPol.Infrastructure.Repositories;
 using ProfilPol.Infrastructure.Services;
@@ -56,8 +57,10 @@ namespace ProfilPol.Api
             // Created by one request HTTP
             services.AddScoped<IGarageRepository, GarageRepository >();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IGarageService, GarageService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IOrderService, OrderService>();
             // Pernament objects
             services.AddSingleton(AutoMapperConfig.Initialize()); // methods Initialize return IMapper so <Imapper> is not necessary here
 

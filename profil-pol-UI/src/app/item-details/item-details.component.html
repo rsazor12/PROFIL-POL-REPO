@@ -1,0 +1,139 @@
+<!--  https://www.npmjs.com/package/ng2-scroll-to-el -->
+
+<app-navbar></app-navbar>
+
+<div class="container main">
+
+  <nav class="breadcrumb">
+    <a class="breadcrumb-item" href="#">Oferta</a>
+    <a class="breadcrumb-item" href="#">Garaze</a>
+    <a class="breadcrumb-item" href="#">{{this.itemDetails.itemName}}</a>
+  </nav>
+
+  <div class="row">
+    <div class="col-md-6">
+        <img class="image img-thumbnail rounded float-left" src={{this.itemDetails.imagePath}}>
+    </div>
+    <div class="col-md-6">
+      <h1 class="item-name ">{{this.itemDetails.itemName}}</h1>
+      <h1 class="price">{{this.itemDetails.price}} zl</h1>
+
+      <h5 *ngIf="this.itemDetails.available" class="text-success" >Dostepny</h5>
+      <h5 *ngIf="!this.itemDetails.available" class="text-danger" >Niedostepny</h5>
+
+      <div class="row">
+        <div class="col-6">
+          <input type="number" value="1">
+          <span>Sztuk</span>
+        </div>
+        <div class="col-6">
+          <button type="button" class="btn btn-lg btn-success" [scrollTo]="'#form'" [scrollDuration]="500" [scrollOffset]="-100"  (click)="this.showOrderForm()">Zamow</button>
+        </div>
+      </div>
+      <span class="text-muted">* dostawa w ciagu {{this.itemDetails.deliveryDays}} dni</span>
+      </div>
+  </div>
+
+  <div class="row opis">
+    <h3>Opis garazu</h3>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur odit laboriosam deserunt, voluptatibus exercitationem, ipsum facilis veniam distinctio soluta facere ullam fuga error ad aperiam, perspiciatis accusantium doloribus repellendus provident!</p>
+  </div>
+
+
+  <div id="form" class="">
+    <form *ngIf="this.showForm" [formGroup]="this.orderForm" class="border" >
+        <h1 class="text-center pb-4 text-muted">Formularz zamowienia</h1>
+      <div *ngIf="!this.getCommonService().loginStatus" class="credentialForm">
+          <div class="text-center form-row alert alert-warning" role="alert">
+              Wpisz dane istniejacego konta lub zarejestruj sie ponizej.
+          </div>
+          <div class="form-row">
+              <div class="form-group col-md-6 has-success">
+                <label class="form-control-label" for="inputEmail4">Email</label>
+                <input formControlName="email" type="email" class="form-control form-control-success" id="inputEmail4" placeholder="email">
+                <div
+                [ngClass]="{'text-danger' : !orderForm.get('email').valid && orderForm.get('email').dirty,
+                 'd-none' : !orderForm.get('email').dirty || orderForm.get('email').valid }">
+                 <small class="form-text">Email Niepoprawny !</small>
+                </div>
+                <!-- <small class="form-text text-muted">Wymagane do sekcji Moje Zamowienia</small> -->
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Haslo</label>
+                <input formControlName="password" type="password" class="form-control" id="inputPassword4" placeholder="haslo">
+                <!-- <small class="form-text text-muted">Wpisz jesli chcesz zabezpieczyc zamowienie</small> -->
+              </div>
+          </div>
+      </div>
+        <div class="form-group">
+          <label for="inputAddress">Adres</label>
+          <input formControlName="address" type="text" class="form-control" id="inputAddress" placeholder="Ulica + nr. domu">
+          <div
+          [ngClass]="{'text-danger' : !orderForm.get('address').valid && orderForm.get('address').dirty,
+           'd-none' : !orderForm.get('address').dirty || orderForm.get('address').valid  }">
+           <small class="form-text">Podaj adres !</small>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">Miasto</label>
+            <input formControlName="city" type="text" class="form-control" id="inputCity">
+            <div
+            [ngClass]="{'text-danger' : !orderForm.get('city').valid && orderForm.get('city').dirty,
+            'd-none' : !orderForm.get('city').dirty || orderForm.get('city').valid }">
+            <small class="form-text">Podaj miasto !</small>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="inputState">Wojewodztwo</label>
+            <select formControlName="location" id="inputState" class="form-control">
+              <option selected>Małopolskie</option>
+              <option>Podkarpackie</option>
+              <option>Podkarpackie</option>
+              <option>Lubelskie</option>
+              <option>Świętokrzyskie</option>
+              <option>Łódzkie</option>
+              <option>Śląskie</option>
+              <option>Opolskie</option>
+              <option>Dolnośląskie</option>
+              <option>Lubuskie</option>
+            </select>
+            <div
+            [ngClass]="{'text-danger' : !orderForm.get('location').valid && orderForm.get('location').dirty,
+            'd-none' : !orderForm.get('location').dirty || orderForm.get('location').valid }">
+            <small class="form-text">Wybierz wojewodztwo !</small>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="inputZip">Kod pocztowy</label>
+            <input formControlName="postCode" type="text" class="form-control" id="inputZip">
+            <div
+            [ngClass]="{'text-danger' : !orderForm.get('postCode').valid && orderForm.get('postCode').dirty,
+            'd-none' : !orderForm.get('postCode').dirty || orderForm.get('postCode').valid }">
+            <small class="form-text">Podaj kod pocztowy !</small>
+            </div>
+          </div>
+        </div>
+
+
+        <app-sheet-color (select)="this.onSelectSheetColor($event)" class="m-5">
+        </app-sheet-color>
+
+        <div class="form-row">
+          <span (click)="this.gotoKontaktPage()" class="text-center note">Masz pomysl na niestandardowy garaz? Przejdz do sekcji kontakt i napisz do nas!</span>
+        </div>
+
+        <button [disabled]="orderForm.invalid" type="submit" class="btn btn-success btn-lg mt-3">Zloz zamowienie</button>
+      </form>
+
+      <pre> {{ orderForm.value | json}}</pre>
+      <pre> validacja email {{ orderForm.get('email').valid | json}}</pre>
+    </div>
+
+
+
+
+
+
+
+</div>

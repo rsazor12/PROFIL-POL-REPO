@@ -1,3 +1,4 @@
+import { ItemDetailsService } from './shared/services/item-details.service';
 import { OrdersService } from './shared/services/orders.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef } from '@angular/core';
@@ -19,13 +20,16 @@ import { PoradnikComponent } from './poradnik/poradnik.component';
 import { GarageCardComponent } from './oferta/garage-card/garage-card.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
+import { ScrollToModule } from 'ng2-scroll-to-el';
 import { AgmCoreModule } from '@agm/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GarageCustomComponent } from './shared/garage-custom/garage-custom.component';
 import { LoginComponent } from './forms/login/login.component';
 import { ProductionStatusComponent } from './production-status/production-status.component';
 import { CommonPageService } from './shared/services/common-page.service';
+import { ItemDetailsComponent } from './item-details/item-details.component';
+import { SheetColorComponent } from './shared/sheet-color/sheet-color.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,9 @@ import { CommonPageService } from './shared/services/common-page.service';
     FooterComponent,
     GarageCustomComponent,
     LoginComponent,
-    ProductionStatusComponent
+    ProductionStatusComponent,
+    ItemDetailsComponent,
+    SheetColorComponent
   ],
   imports: [
     BrowserModule,
@@ -55,11 +61,14 @@ import { CommonPageService } from './shared/services/common-page.service';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBKG9Bm93qO_Pb6B1qjSz2MhbdTX1EN3j8'
     }),
-    AngularFontAwesomeModule
+    ScrollToModule.forRoot(),
+    AngularFontAwesomeModule,
+    ReactiveFormsModule
   ],
   providers: [
     CommonPageService,
-    OrdersService
+    OrdersService,
+    ItemDetailsService
   ],
   bootstrap: [AppComponent]
 })

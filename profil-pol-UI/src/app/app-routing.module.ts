@@ -8,10 +8,11 @@ import { AppComponent } from './app.component';
 import { OfertaComponent } from './oferta/oferta.component';
 import { GaleriaComponent } from './galeria/galeria.component';
 import { PoradnikComponent } from './poradnik/poradnik.component';
+import { ItemDetailsComponent } from './item-details/item-details.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'start' },
-  { path: 'start', component:  ProductionStatusComponent}, // StartComponent
+  { path: 'start', component:  ItemDetailsComponent}, // StartComponent
   { path: 'oferta', component: OfertaComponent },
   { path: 'kontakt', component: KontaktComponent },
   { path: 'poradnik', component: PoradnikComponent },

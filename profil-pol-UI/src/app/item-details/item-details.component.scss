@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Cinzel"');
+
+.main
+{
+  margin-top: 150px;
+  font-family: 'Cinzel', sans-serif;
+  padding:50px;
+}
+
+.item-name
+{
+  padding: 30px;
+}
+
+.price
+{
+  padding: 30px;
+  color: rgba($color: #fc5d01, $alpha: 1.0)
+}
+
+.opis
+{
+  margin-top: 30px;
+}
+
+input[type="number"]
+{
+  margin-top: 20px;
+  width: 30%;
+}
+
+button
+{
+  margin-top: 0px;
+  width: 100%;
+}
+
+form
+{
+  margin-top: 40px;
+  padding: 30px 20% 50px 20%;
+}
+
+.note
+{
+  font-size: 85%;
+}
+
+.note:hover
+{
+  cursor: pointer;
+}
+
+// .isValid
+// {
+//   color: green;
+// }
+
+// .isInvalid
+// {
+//   color: red;
+// }
+
+

@@ -1,0 +1,10 @@
+
+<div class="d-flex flex-row">
+  <div *ngFor="let colorAndPath of this.colorsAndPaths; let i = index" class="m-2">
+      <!-- <img class="image img-thumbnail rounded float-left" src={{colorImage}}> -->
+      <figure (click)="this.onSheetColorSelect(colorAndPath)" class="figure text-center">
+        <img src="{{colorAndPath.imagePath}}"[ngClass]="{'box' : colorAndPath.selected}" class="image figure-img img-fluid rounded" alt="A generic square placeholder image with rounded corners in a figure.">
+        <figcaption class="figure-caption">{{colorAndPath.sheetColor}}</figcaption>
+      </figure>
+  </div>
+</div>
