@@ -12,8 +12,9 @@ namespace ProfilPol.Infrastructure.Repositories
     {
         private static readonly ISet<User> _users = new HashSet<User>
         {
-            new User(Guid.NewGuid(), "normal", "testName1", "test1", "test1"),
-            new User(Guid.NewGuid(), "admin", "testName2", "test2", "test2")
+            new User(Guid.Parse("00000000-0000-0000-0000-000000000001"), "normal", "testName3", "testSurname3", "test3@mail", "test3", "adres1", "city1", "location"),
+            new User(Guid.Parse("00000000-0000-0000-0000-000000000002"), "normal", "testName1", "test1", "test1", "", "", "", ""),
+            new User(Guid.Parse("00000000-0000-0000-0000-000000000003"), "admin", "testName2", "test2", "test2", "", "", "", "")
 
         };
         public async Task<User> GetAsync(Guid id)
@@ -32,9 +33,26 @@ namespace ProfilPol.Infrastructure.Repositories
             await Task.CompletedTask;
         }
 
-        public async Task UpdateAsync(User user)
+        public async Task UpdateAsync(User oldUser, User newUser)
         {
-            throw new NotImplementedException();
+
+            // _users.FirstOrDefault(u => u.Id == user.Id).
+
+            // delete old user
+             _users.Remove(oldUser);
+
+            // add new to list
+            _users.Add(newUser);
+
+
+            //// crete new one   
+            //var newUser = new User(user.Id, user.Role, user.Name, user.Surname, user.Email, user.Password, user.Adress, user.City, user.Location);
+
+            //// add to list
+            //_users.Add(user);
+
+            await Task.CompletedTask;
+
         }
 
         public async Task DeleteAsync(User user)

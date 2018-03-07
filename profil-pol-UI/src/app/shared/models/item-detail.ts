@@ -3,6 +3,7 @@ import { SheetColor } from './../dictionaries/sheet-color.enum';
 
 // tslint:disable-next-line:class-name
 export interface ItemDetails {
+  id_garage: string;
   itemName: string;
   imagePath: string;
   price: number;
@@ -10,4 +11,5 @@ export interface ItemDetails {
   deliveryDays: number;
   sheetColor: SheetColor;
   sheetType: SheetType;
+  sizes: string;
 }

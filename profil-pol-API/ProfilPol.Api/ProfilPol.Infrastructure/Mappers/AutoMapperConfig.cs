@@ -14,6 +14,10 @@ namespace ProfilPol.Infrastructure.Mappers
             {
                 cfg.CreateMap<Garage, GarageDto>();
                 cfg.CreateMap<User, AccountDto>();
+                cfg.CreateMap<Order, OrderDto>();
+                //cfg.CreateMap<GarageDto, Garage>();
+                //cfg.CreateMap<UserDto, UserDto>();
+                //cfg.CreateMap<OrderDto, Order>();
             })
             .CreateMapper();
     }

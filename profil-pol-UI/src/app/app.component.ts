@@ -1,3 +1,4 @@
+import { RoutingHistoryService } from './shared/services/routing-history.service';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
@@ -12,5 +13,9 @@ export class AppComponent implements OnInit {
     $('button').click(function() {
       alert('kliknales przycisk');
     });
+  }
+
+  constructor(private routingHistoryService: RoutingHistoryService) {
+    routingHistoryService.loadRouting();
   }
 }

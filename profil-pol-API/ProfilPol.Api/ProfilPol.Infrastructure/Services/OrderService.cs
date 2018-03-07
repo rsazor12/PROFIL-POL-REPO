@@ -4,7 +4,9 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using ProfilPol.Core.Dictionaries;
+using ProfilPol.Core.Domain;
 using ProfilPol.Core.Domain.GarageComponents;
+using ProfilPol.Core.Domain.Repositories;
 using ProfilPol.Core.Repositories;
 using ProfilPol.Infrastructure.DTO;
 
@@ -13,35 +15,73 @@ namespace ProfilPol.Infrastructure.Services
     public class OrderService : IOrderService
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly IGarageService _garageService;
-        private readonly IUserService _userService;
+        // private readonly IGarageService _garageService;
+        private readonly IGarageRepository _garageRepository;
+        //private readonly IUserService _userService;
+        private readonly IUserRepository _userRepository;
+
         private readonly IMapper _mapper;
 
 
-        public OrderService(IOrderRepository orderRepository, IGarageService garageService, IUserService userService, IMapper mapper)
+        public OrderService(IOrderRepository orderRepository, IGarageRepository garageRepository, IUserRepository userRepository, IMapper mapper)
         {
             this._orderRepository = orderRepository;
-            this._garageService = garageService;
-            this._userService = userService;
+            this._garageRepository = garageRepository;
+            this._userRepository = userRepository;
             this._mapper = mapper;
         }
 
 
-        public Task<OrderDto> GetAsync(Guid id)
+        public async Task<OrderDto> GetAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var order = await _orderRepository.GetAsync(id);
+
+            return _mapper.Map<Order,OrderDto>(order);
         }
-        public Task AddOrderAsync(OrderDto order)
+        public async Task AddOrderAsync(Order orderDto)
         {
-            throw new NotImplementedException();
+            await _orderRepository.AddAsync(orderDto);
         }
 
-        public Task CreateAsync(Guid id, bool isCustom, GarageType type, SheetColor sheetColor, SheetType sheetType, List<Window> windows, List<Door> doors, List<Roof> roofs, double xLength, double yLength, double zLength)
+
+        public async Task<OrderDto> CreateAsync(Guid garageId, DateTime createdAt, string email, string name, string surname, string password, string address, string city, string location)
         {
-            throw new NotImplementedException();
+            // code below because only loged in user can make on order
+            var user = await _userRepository.GetAsync(email);
+
+            // if user doesn't exist create it 
+            if(user==null)
+            {
+                var newUser = new User(Guid.NewGuid(), "normal", name, surname, email, password, address, city, location);
+
+                await _userRepository.AddAsync(newUser);
+            }
+            else
+            {
+                // if exists update it data
+                var newUser = new User(user.Id, "normal", name, surname, email, password, address, city, location);
+
+
+                await _userRepository.UpdateAsync(user, newUser);
+            }
+
+            
+
+            var garage = await _garageRepository.GetAsync(garageId);
+
+
+            var order = new Order(
+                user,
+                garage,
+                createdAt
+                );
+
+            await _orderRepository.AddAsync(order);
+
+            return _mapper.Map<Order, OrderDto>(order);
         }
 
-        public Task UpdateAsync(Guid id, double xLength, double yLength, double zLength)
+        public Task UpdateAsync(Order order)
         {
             throw new NotImplementedException();
         }

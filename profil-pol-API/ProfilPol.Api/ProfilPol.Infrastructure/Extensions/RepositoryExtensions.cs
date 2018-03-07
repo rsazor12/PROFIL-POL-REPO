@@ -32,5 +32,17 @@ namespace ProfilPol.Infrastructure.Extensions
 
             return user;
         }
+
+        public static async Task<User> GetOrFailAsync(this IUserRepository repository, string email)
+        {
+            var user = await repository.GetAsync(email);
+
+            if (user == null)
+            {
+                throw new Exception($"User {email} not exists");
+            }
+
+            return user;
+        }
     }
 }

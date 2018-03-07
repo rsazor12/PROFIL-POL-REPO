@@ -48,7 +48,8 @@ namespace ProfilPol.Api
             };
         });
 
-
+            // ENABLE CORD TODO
+            services.AddCors();
 
             services.AddMvc()
                 .AddJsonOptions(x => x.SerializerSettings.Formatting = Formatting.Indented);
@@ -79,6 +80,13 @@ namespace ProfilPol.Api
             }
 
             app.UseAuthentication();
+
+            // TODO to cors
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
 
             app.UseMvc();
         }

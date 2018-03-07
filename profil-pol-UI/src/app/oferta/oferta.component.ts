@@ -1,3 +1,4 @@
+import { OfferService } from './../shared/services/offer.service';
 import { GarageCardContent } from './../shared/models/garage-card-content';
 import { Component, OnInit } from '@angular/core';
 import { garages } from './garages-to-cards';
@@ -8,10 +9,18 @@ import { garages } from './garages-to-cards';
 })
 export class OfertaComponent implements OnInit {
 
-  public garages: GarageCardContent[] = garages;
-  constructor() { }
+  public garages: GarageCardContent[]; // = garages;
+  constructor(
+    private offerService: OfferService
+  ) { }
 
   ngOnInit() {
+    this.offerService.getGarageOfferDetails()
+    .subscribe(
+      res => {
+        this.garages = res;
+      }
+    );
   }
 
 }

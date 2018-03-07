@@ -10,7 +10,9 @@ namespace ProfilPol.Infrastructure.Services
     public interface IUserService
     {
         Task<AccountDto> GetAccountAsync(Guid userId);
-        Task RegisterAsync(Guid userId, string email, string name, string password, string role ="user");
+        Task<UserDto> GetUserDetails(string email);
+
+        Task RegisterAsync(Guid userId, string email, string name, string surname, string password, string adress, string city, string location, string role);
 
         Task<TokenDto> LoginAsync(Login login);
     }

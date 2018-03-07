@@ -8,6 +8,7 @@ namespace ProfilPol.Core.Domain.Repositories
     public interface IGarageRepository
     {
         Task<Garage> GetAsync(Guid id);
+        Task<List<Garage>> GetAllAsync();
         Task AddAsync(Garage garage);
         Task UpdateAsync(Garage garage);
         Task DeleteAsync(Garage garage);

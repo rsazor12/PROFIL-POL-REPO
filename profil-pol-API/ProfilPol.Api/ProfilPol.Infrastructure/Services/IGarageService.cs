@@ -13,6 +13,8 @@ namespace ProfilPol.Infrastructure.Services
     {
         Task<GarageDto> getAsync(Guid id);
 
+        Task<List<GarageDto>> getAllAsync();
+
         Task CreateAsync(
             Guid id,
             bool isCustom,

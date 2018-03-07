@@ -8,6 +8,7 @@ namespace ProfilPol.Core.Domain
 {
     public class Garage: Entity
     {
+        public OfferDetails OfferDetails { get; protected set; }
         public bool IsCustom { get; protected set; }
         public GarageType Type { get; protected set; }
 
@@ -25,10 +26,11 @@ namespace ProfilPol.Core.Domain
         public double ZLength { get; protected set; }
 
 
-        public Garage(bool isCustom, GarageType type, SheetColor sheetColor, SheetType sheetType, List<Window> windows, List<Door> doors,
+        public Garage(OfferDetails offerDetails, bool isCustom, GarageType type, SheetColor sheetColor, SheetType sheetType, List<Window> windows, List<Door> doors,
             List<Roof> roofs, double xLength, double yLength, double zLength
             )
         {
+            this.OfferDetails = offerDetails;
             this.IsCustom = isCustom;
             this.Type = type;
             this.SheetColor = sheetColor;
@@ -40,11 +42,12 @@ namespace ProfilPol.Core.Domain
 
         }
 
-        public Garage(Guid id, bool isCustom, GarageType type, SheetColor sheetColor, SheetType sheetType, List<Window> windows, List<Door> doors,
+        public Garage(Guid id, OfferDetails offerDetails, bool isCustom, GarageType type, SheetColor sheetColor, SheetType sheetType, List<Window> windows, List<Door> doors,
              List<Roof> roofs, double xLength, double yLength, double zLength
              )
         {
             this.Id = id;
+            this.OfferDetails = offerDetails;
             this.IsCustom = isCustom;
             this.Type = type;
             this.SheetColor = sheetColor;
@@ -66,6 +69,23 @@ namespace ProfilPol.Core.Domain
             this.YLength = yLength;
             this.ZLength = zLength;
         }
+
+
+        //public Garage(Guid id, OfferDetails offerDetails, bool isCustom, GarageType type, SheetColor sheetColor, SheetType sheetType, List<Window> windows, List<Door> doors,
+        //                List<Roof> roofs, double xLength, double yLength, double zLength
+        //)
+        //{
+        //    this.Id = id;
+        //    this.OfferDetails = offerDetails;
+        //    this.IsCustom = isCustom;
+        //    this.Type = type;
+        //    this.SheetColor = sheetColor;
+        //    this.SheetType = sheetType;
+        //    this.Windows = windows;
+        //    this.Doors = doors;
+        //    this.Roofs = roofs;
+        //    SetSize(xLength, yLength, zLength);
+        //}
 
 
     }

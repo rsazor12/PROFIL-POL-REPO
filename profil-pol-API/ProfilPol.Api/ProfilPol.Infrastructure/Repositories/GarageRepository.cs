@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProfilPol.Core.Dictionaries;
 using ProfilPol.Core.Domain;
+using ProfilPol.Core.Domain.GarageComponents;
 using ProfilPol.Core.Domain.Repositories;
 
 namespace ProfilPol.Infrastructure.Repositories
@@ -15,6 +17,7 @@ namespace ProfilPol.Infrastructure.Repositories
         {
             new Garage(
                 Guid.Parse("00000000000000000000000000000001"),
+                new OfferDetails("../../assets/images/garages/20160602_085134_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1000),
                 true,
                 GarageType.Dwuspad,
                 SheetColor.Ocynk,
@@ -23,6 +26,7 @@ namespace ProfilPol.Infrastructure.Repositories
                 10,20,30),
             new Garage(
                 Guid.Parse("00000000000000000000000000000002"),
+                new OfferDetails("../../assets/images/garages/20160603_084340_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1500),
                 true,
                 GarageType.Jednospad,
                 SheetColor.ZlotyDab,
@@ -30,6 +34,16 @@ namespace ProfilPol.Infrastructure.Repositories
                 null,null,null,
                 20,20,50)
         };
+
+        public async Task<List<Garage>> GetAllAsync()
+        {
+            // TODO remove later
+
+
+            var garageList = new List<Garage>(_garages);
+
+            return await Task.FromResult(garageList);
+        }
 
         public async Task<Garage> GetAsync(Guid id)
         {

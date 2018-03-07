@@ -1,4 +1,5 @@
 ﻿using ProfilPol.Core.Dictionaries;
+using ProfilPol.Core.Domain;
 using ProfilPol.Core.Domain.GarageComponents;
 using ProfilPol.Infrastructure.DTO;
 using System;
@@ -12,22 +13,11 @@ namespace ProfilPol.Infrastructure.Services
     {
         Task<OrderDto> GetAsync(Guid id);
 
-        Task CreateAsync(
-            Guid id,
-            bool isCustom,
-            GarageType type,
-            SheetColor sheetColor,
-            SheetType sheetType,
-            List<Window> windows,
-            List<Door> doors,
-            List<Roof> roofs,
-            double xLength,
-            double yLength,
-            double zLength);
+        Task<OrderDto> CreateAsync(Guid garageId, DateTime createdAt, string email, string name, string surname, string password, string address, string city, string location);
 
-        Task AddOrderAsync(OrderDto garage);
+        Task AddOrderAsync(Order order);
 
-        Task UpdateAsync(Guid id, double xLength, double yLength, double zLength);
+        Task UpdateAsync(Order order);
 
         Task DeleteAsync(Guid id);
     }

@@ -1,3 +1,6 @@
+import { OfferService } from './shared/services/offer.service';
+import { UserService } from './shared/services/user.service';
+import { LoginService } from './shared/services/login.service';
 import { ItemDetailsService } from './shared/services/item-details.service';
 import { OrdersService } from './shared/services/orders.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,7 +33,10 @@ import { ProductionStatusComponent } from './production-status/production-status
 import { CommonPageService } from './shared/services/common-page.service';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { SheetColorComponent } from './shared/sheet-color/sheet-color.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { RoutingHistoryService } from './shared/services/routing-history.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +59,7 @@ import { SheetColorComponent } from './shared/sheet-color/sheet-color.component'
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     CommonModule,
     FormsModule,
@@ -63,12 +70,19 @@ import { SheetColorComponent } from './shared/sheet-color/sheet-color.component'
     }),
     ScrollToModule.forRoot(),
     AngularFontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    ToastModule.forRoot(),
+
   ],
   providers: [
     CommonPageService,
     OrdersService,
-    ItemDetailsService
+    ItemDetailsService,
+    LoginService,
+    RoutingHistoryService,
+    UserService,
+    OfferService
   ],
   bootstrap: [AppComponent]
 })

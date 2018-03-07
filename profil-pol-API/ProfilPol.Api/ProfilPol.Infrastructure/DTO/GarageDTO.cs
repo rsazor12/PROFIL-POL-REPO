@@ -8,6 +8,7 @@ namespace ProfilPol.Infrastructure.DTO
 {
     public class GarageDto
     {
+        public OfferDetails OfferDetails { get; set; }
         public Guid Id { get; set; }
         public bool IsCustom { get;  set; }
         public GarageType Type { get;  set; }

@@ -1,4 +1,4 @@
-import { Order } from './../shared/models/order';
+// import { Order } from './../shared/models/order';
 import { OrdersService } from './../shared/services/orders.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,14 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./production-status.component.scss']
 })
 export class ProductionStatusComponent implements OnInit {
-
-  public orders: Order[] = [];
+ // TODO remove comments
+  // public orders: Order[] = [];
   constructor(
-    private ordersService: OrdersService
+    // private ordersService: OrdersService
     ) {}
 
   ngOnInit() {
-    this.orders = this.ordersService.getFakeOrders();
+    // this.orders = this.ordersService.getFakeOrders();
   }
 
 }

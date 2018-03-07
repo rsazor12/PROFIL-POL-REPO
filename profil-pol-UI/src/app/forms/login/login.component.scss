@@ -8,7 +8,7 @@
   left:0px;
   width:100%;
   height:100%;
-  background-image: url("../../../assets/images/backgrounds/steel-sheet-bg.jpg");
+  background-image: url("../../../assets/images/backgrounds/gate-bg.jpg");
   // background-size: cover;
   // font-family: sans-serif;
 }
@@ -18,11 +18,11 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-  width: 350px;
+  width: 330px;
   height: 420px;
   padding: 80px 40px;
   box-sizing: border-box;
-  background: rgba(0,0,0,.5)
+  background: rgba(0, 0, 0, 0.781)
 }
 .user
 {
@@ -38,7 +38,7 @@ h2
 {
   margin: 0;
   padding: 0 0 20px;
-  color: #efed40;
+  color: #01a0df;
   text-align: center;
 }
 .loginBox p

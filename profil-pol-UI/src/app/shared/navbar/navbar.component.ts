@@ -26,6 +26,10 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  getCommonPageService(): CommonPageService {
+    return this.commonPageService;
+  }
+
   gotoStartPage() {
     this.router.navigate(['start']);
   }
@@ -46,12 +50,12 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['galeria']);
   }
 
+  gotoLoginPage() {
+    this.router.navigate(['login']);
+  }
+
   gotoProductionStatusPage() {
-    if (!this.commonPageService.loginStatus) {
-      this.router.navigate(['login']);
-    } else {
-      this.router.navigate(['production-status']);
-    }
+    this.router.navigate(['production-status']);
   }
 
 }

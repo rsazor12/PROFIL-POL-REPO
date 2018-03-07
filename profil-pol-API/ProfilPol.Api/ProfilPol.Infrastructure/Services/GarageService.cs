@@ -29,10 +29,17 @@ namespace ProfilPol.Infrastructure.Services
             return _mapper.Map<GarageDto>(@garage);
         }
 
+        public async Task<List<GarageDto>> getAllAsync()
+        {
+            var garageList = await _garageRepository.GetAllAsync();
+
+            return _mapper.Map<List<GarageDto>>(garageList);
+        }
+
 
         public async Task CreateAsync(Guid id, bool isCustom, GarageType type, SheetColor sheetColor, SheetType sheetType, List<Window> windows, List<Door> doors, List<Roof> roofs, double xLength, double yLength, double zLength)
         {
-            var @garage = new Garage(id, true, GarageType.Dwuspad, SheetColor.Ocynk, SheetType.Ocynk, null, null, null, 10, 20, 30);
+            var @garage = new Garage(id, null, true, GarageType.Dwuspad, SheetColor.Ocynk, SheetType.Ocynk, null, null, null, 10, 20, 30);
             await _garageRepository.AddAsync(@garage);
         }
 

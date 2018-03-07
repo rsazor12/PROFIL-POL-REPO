@@ -29,6 +29,31 @@ body{
   padding-right: 10px;
 }
 
+.login-button
+{
+  color: white;
+  float: right;
+  background-color: rgb(235, 89, 63);
+  padding: 7px;
+  padding-right: 15px;
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 11;
+  border-radius: 3px;
+}
+
+.login-button:hover
+{
+  cursor: pointer;
+}
+
+.login-button fa
+{
+  padding-right: 10px;
+  padding-left: 5px;
+}
+
 
 nav
 {

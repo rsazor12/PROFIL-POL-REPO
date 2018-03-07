@@ -104,7 +104,7 @@
             <small class="form-text">Wybierz wojewodztwo !</small>
             </div>
           </div>
-          <div class="form-group col-md-3">
+          <!-- <div class="form-group col-md-3">
             <label for="inputZip">Kod pocztowy</label>
             <input formControlName="postCode" type="text" class="form-control" id="inputZip">
             <div
@@ -112,7 +112,7 @@
             'd-none' : !orderForm.get('postCode').dirty || orderForm.get('postCode').valid }">
             <small class="form-text">Podaj kod pocztowy !</small>
             </div>
-          </div>
+          </div> -->
         </div>
 
 
@@ -123,7 +123,7 @@
           <span (click)="this.gotoKontaktPage()" class="text-center note">Masz pomysl na niestandardowy garaz? Przejdz do sekcji kontakt i napisz do nas!</span>
         </div>
 
-        <button [disabled]="orderForm.invalid" type="submit" class="btn btn-success btn-lg mt-3">Zloz zamowienie</button>
+        <button (click) = "this.makeOrder()" [disabled]="orderForm.invalid" type="submit" class="btn btn-success btn-lg mt-3">Zloz zamowienie</button>
       </form>
 
       <pre> {{ orderForm.value | json}}</pre>

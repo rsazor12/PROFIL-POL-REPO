@@ -23,13 +23,13 @@ namespace ProfilPol.Api.Controllers
             return View();
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Get(Guid id)
-        //{
-        //    var garage = await _garageService.getAsync(Guid.Parse("00000000000000000000000000000001"));
+        [HttpGet, AllowAnonymous]
+        public async Task<IActionResult> Get()
+        {
+            var garageList = await _garageService.getAllAsync();
 
-        //    return Json(garage);
-        //}
+            return Json(garageList);
+        }
 
         [HttpGet("{garageId}")]
         public async Task<IActionResult> Get(Guid garageId)
@@ -37,6 +37,16 @@ namespace ProfilPol.Api.Controllers
             var garage = await _garageService.getAsync(garageId);
 
             return Json(garage);
+        }
+
+        [HttpGet("GetGarageOfferDetails")]
+        public async Task<IActionResult> GetGarageOfferDetails()
+        {
+            var garageList = await _garageService.getAllAsync();
+
+            var garageListOfferDetails = garageList.Select(garage => garage.OfferDetails).ToList();
+
+            return Json(garageListOfferDetails);
         }
 
         [HttpPost]

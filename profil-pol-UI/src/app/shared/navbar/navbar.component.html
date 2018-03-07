@@ -53,15 +53,22 @@ contribute on github : https://github.com/alphadsy/alpha-ui
   </ul>
 </nav>
 
-<div class="order-button">
+<!-- <div class="order-button">
   <fa name="shopping-cart" size="3x"></fa>
   <span>Moje zamowienia</span>
-</div>
+</div> -->
 
-<div class="order-button">
+<div *ngIf="this.getCommonPageService().getLoginService().isLogedIn"  class="order-button">
   <fa name="shopping-cart" size="3x"></fa>
   <span (click)="this.gotoProductionStatusPage()">Moje zamowienia</span>
 </div>
+
+<div *ngIf="!this.getCommonPageService().getLoginService().isLogedIn"  class="login-button">
+  <fa name="user-circle" size=""></fa>
+  <span (click)="this.gotoLoginPage()">Zaloguj</span>
+</div>
+
+
 
 
 <section class="sec1"></section>

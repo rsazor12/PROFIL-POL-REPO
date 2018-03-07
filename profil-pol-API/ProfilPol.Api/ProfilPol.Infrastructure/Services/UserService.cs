@@ -37,7 +37,14 @@ namespace ProfilPol.Infrastructure.Services
 
         }
 
-        public async Task RegisterAsync(Guid userId, string email, string name, string password, string role = "user")
+        public async Task<UserDto> GetUserDetails(string email)
+        {
+            var user = await _userRepository.GetOrFailAsync(email);
+
+            return _mapper.Map<UserDto>(user);
+        }
+
+        public async Task RegisterAsync(Guid userId,  string email, string name, string surname, string password, string adress, string city, string location, string role = "user")
         {
             var user = await _userRepository.GetAsync(email);
             if(user != null)
@@ -45,8 +52,15 @@ namespace ProfilPol.Infrastructure.Services
                 throw new Exception($"User with email: '{email}' already exists.");
             }
             // TODO - here should be used hash function
-            user = new User(userId, role, name, email, password);
+            user = new User(userId, role, name, surname, email, password, adress, city, location);
             await _userRepository.AddAsync(user);
+        }
+
+        public async Task UpdateAsync(Guid userId, string email, string name, string surname, string password, string adress, string city, string location, string role = "user")
+        {
+            var user = new User(userId, role, name, surname, email, password, adress, city, location);
+     
+            await _userRepository.UpdateAsync(user);
         }
 
         //// TODO old method
@@ -127,7 +141,6 @@ namespace ProfilPol.Infrastructure.Services
 
             return user;
         }
-
 
     }
 }
