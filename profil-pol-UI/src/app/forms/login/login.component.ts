@@ -79,7 +79,6 @@ export class LoginComponent implements OnInit {
 
 
   public login() {
-    // alert(this.loginForm.get('email').value);
     this.loginService.login(this.loginForm.get('email').value, this.loginForm.get('password').value)
     .pipe(catchError(this.handleError))
     .subscribe(

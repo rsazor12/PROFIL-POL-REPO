@@ -1,15 +1,16 @@
 import { SheetColor } from './../dictionaries/sheet-color.enum';
 export interface MakeOrder {
   // item details
-  garageId: string;
-  price: number;
-  sheetColor: SheetColor;
+  GarageId: string;
+  Price: number;
+  SheetColor: number;
   // user details
-  name: string;
-  surname: string;
-  userEmail: string;
-  adres: string;
-  city: string;
-  location: string;
+  UserName: string;
+  UserSurname: string;
+  Password: string;
+  UserEmail: string;
+  Adress: string;
+  City: string;
+  Location: string;
 }
 

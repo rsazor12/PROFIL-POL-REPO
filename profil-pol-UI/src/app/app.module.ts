@@ -1,3 +1,4 @@
+import { ContactService } from './shared/services/contact.service';
 import { OfferService } from './shared/services/offer.service';
 import { UserService } from './shared/services/user.service';
 import { LoginService } from './shared/services/login.service';
@@ -82,7 +83,8 @@ import { RoutingHistoryService } from './shared/services/routing-history.service
     LoginService,
     RoutingHistoryService,
     UserService,
-    OfferService
+    OfferService,
+    ContactService
   ],
   bootstrap: [AppComponent]
 })

@@ -22,7 +22,9 @@ export class OrdersService {
         })
       };
 
-      const createOrderCommand = JSON.stringify(order);
+
+
+        const createOrderCommand = JSON.stringify(order);
 
         return this.http.post<any>(getUserDetailsUrl, createOrderCommand, httpOptions);
       }

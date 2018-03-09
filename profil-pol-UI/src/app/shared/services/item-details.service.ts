@@ -10,6 +10,7 @@ export class ItemDetailsService {
 
   public getMockDetails(): ItemDetails {
     return {
+      id_garage: '00000000000000000000000000000001',
       itemName: 'Garaz jednospadowy',
       imagePath: '../../../assets/images/garages/20160603_084340_HDR.jpg',
       price: 1200,

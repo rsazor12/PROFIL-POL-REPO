@@ -22,7 +22,7 @@ export class ItemDetailsComponent implements OnInit {
   public itemDetails: ItemDetails;
   public showForm: boolean;
   public orderForm: FormGroup;
-  public selectedSheetColor: SheetColor;
+  public selectedSheetColor: SheetColor = SheetColor.zlotyDab;
 
   constructor(
     private itemDetailsService: ItemDetailsService,
@@ -63,38 +63,31 @@ export class ItemDetailsComponent implements OnInit {
   }
 
   buildOrderForm() {
-    if (this.loginService.isLogedIn) {
       return this.formBuilder.group({
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required]],
         address: ['', Validators.required],
         city: ['', Validators.required],
         location: ['', Validators.required],
-
       });
-
-    } else {
-      return this.formBuilder.group({
-        email: [this.userService.userDetails.email, [Validators.required, Validators.email]],
-        password: ['', [Validators.required]],
-        address: [this.userService.userDetails.adress, Validators.required],
-        city: [this.userService.userDetails.city, Validators.required],
-        location: [this.userService.userDetails.location, Validators.required]
-      });
-    }
   }
 
   public makeOrder() {
+    // TODO change this values
     const order: MakeOrder = {} as MakeOrder;
-    order.user_email = this.orderForm.get('email').value;
-    order.id_garage = this.itemDetails.id_garage;
-    order.price = this.itemDetails.price;
-    order.sheetColor = this.selectedSheetColor;
-    order.adres = this.orderForm.get('address').value;
-    order.city = this.orderForm.get('city').value;
-    order.location = this.orderForm.get('location').value;
+    order.UserEmail = this.orderForm.get('email').value;
+    order.UserName = 'kamil',
+    order.UserSurname = 'bielski',
+    order.Password = '123456',
+    order.GarageId = this.itemDetails.id_garage;
+    order.Price = this.itemDetails.price;
+    order.SheetColor = 0; // this.selectedSheetColor;
+    order.Adress = this.orderForm.get('address').value;
+    order.City = this.orderForm.get('city').value;
+    order.Location = this.orderForm.get('location').value;
 
-    this.ordersService.CreateOrder(order);
+    this.ordersService.CreateOrder(order)
+      .subscribe(res => alert(res));
   }
 
 
