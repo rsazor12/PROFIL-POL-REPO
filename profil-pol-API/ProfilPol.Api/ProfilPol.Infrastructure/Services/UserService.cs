@@ -58,9 +58,9 @@ namespace ProfilPol.Infrastructure.Services
 
         public async Task UpdateAsync(Guid userId, string email, string name, string surname, string password, string adress, string city, string location, string role = "user")
         {
-            var user = new User(userId, role, name, surname, email, password, adress, city, location);
+            //var user = new User(userId, role, name, surname, email, password, adress, city, location);
      
-            await _userRepository.UpdateAsync(user);
+            //await _userRepository.UpdateAsync(user);
         }
 
         //// TODO old method

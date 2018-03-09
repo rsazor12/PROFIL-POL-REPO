@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProfilPol.Infrastructure.Commands.Garages;
@@ -32,7 +33,7 @@ namespace ProfilPol.Api.Controllers
             return Json(order);
         }
 
-        [HttpPost]
+        [HttpPost, AllowAnonymous]
         public async Task<IActionResult> Post([FromBody]CreateOrder command)
         {
             var orderDto = await _orderService.CreateAsync(

@@ -81,7 +81,7 @@ namespace ProfilPol.Api
 
             app.UseAuthentication();
 
-            // TODO to cors
+            // TODO to CORS
             app.UseCors(builder => builder
                 .AllowAnyOrigin()
                 .AllowAnyMethod()

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using MimeKit;
 using ProfilPol.Infrastructure.Commands.Users;
 using ProfilPol.Infrastructure.Services;
 
@@ -14,9 +17,51 @@ namespace ProfilPol.Api.Controllers
     public class AccountController : ApiControllerBase
     {
         private readonly IUserService _userService;
-        public AccountController(IUserService userService)
+        public IConfiguration Configuration { get; }
+
+        public AccountController(
+            IUserService userService,
+            IConfiguration configuration)
         {
             _userService = userService;
+            Configuration = configuration;
+        }
+
+        // To sending mail
+        [HttpPost("SendEmail"), AllowAnonymous]
+        public async Task<IActionResult> SendEmail([FromBody]SendEmail command)
+        {
+            // TODO place hard coded values in appsettings
+            var message = new MimeMessage();
+            // message.From.Add(new MailboxAddress("profilpol.biuro@gmail.com"));
+            message.From.Add(new MailboxAddress(Configuration["Email:SenderAddress"]));
+
+            message.To.Add(new MailboxAddress(Configuration["Email:ReceiverAddress"]));
+            message.Subject = $"Pytanie: Uzytkownik {command.UserName} ({command.UserAddress})";
+            message.Body = new TextPart("plain")
+            {
+                Text = $"Uzytkownik: {command.UserAddress} wyslal wiadomosc: \n\n\n"
+                       + command.MessageContent
+            };
+
+            using (var client = new SmtpClient())
+            {
+                try
+                {
+                    client.Connect("smtp.gmail.com", 587, false);
+                    client.Authenticate(Configuration["Email:SenderAddress"], Configuration["Email:SenderPassword"]);
+
+                    client.Send(message);
+                    client.Disconnect(true);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
+            }
+
+            return Ok();
         }
 
         //[HttpGet, Authorize]
