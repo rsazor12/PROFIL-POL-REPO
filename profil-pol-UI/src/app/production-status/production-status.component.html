@@ -1,43 +1,54 @@
-<div class="container border">
-  <div class="row card border-top border-bottom border-dark" *ngFor="let order of this.orders; let i = index">
 
-      <div class="card-header text-center">
-        <h5>Nr zamowienia: {{order.id}}</h5>
-      </div>
+<app-navbar></app-navbar>
 
+<
+<div class="container content">
+  <h1 class="text-info text-center">Zamowienia</h1>
+
+  <div class="row" >
+
+    <!-- TODO <nav class="breadcrumb">
+      <a class="breadcrumb-item" href="#">Zamowienia</a>
+      <a class="breadcrumb-item" href="#">Garaze</a>
+
+    </nav> -->
+
+    <div class="container border p-5" *ngFor="let order of this.orders; let i = index">
       <div class="row">
-        <div class=" text-center ">
-            <h3 class="p-3">{{order.description}}</h3>
+          <div class="col-md-6">
+            <img class="image img-thumbnail rounded float-left" src={{this.order.ImagePath}}>
 
-            <div class="col-5">
-                <img class="img-thumbnail rounded float-left" src={{order.imagePath}}>
+          </div>
+          <div class="col-md-6">
+            <h2 class="item-name ">{{this.order.GarageName}}</h2>
+            <span>(nr. zamowienia {{this.order.GarageId}})</span>
+            <h3 class="price">{{this.order.Price}} zl</h3>
+            <h4 class="sizes">Wymiary: {{this.order.GarageSizeX}} X {{this.order.GarageSizeY}} X {{this.order.GarageSizeZ}}</h4>
+            <h4 class="sheet-color">Kolor: {{this.order.SheetColor.toString()}}</h4>
+            <span class="order-date">Data Zamowienia: {{this.order.OrderDate}}</span>
+            <span class="address">Adres: {{this.order.Adress}}</span>
+            <span class="city">Miasto: {{this.order.City}}</span>
+            <span class="location">Wojewodztwo: {{this.order.Location}}</span>
+            <h4 class="production-status">Status produkcji: {{this.order.ProductionStatus}}</h4>
+            <div *ngIf="this.order.ProductionStatus === 0" class="alert alert-info" role="alert">
+                Zamowienie zlozone! Oczekuj na nasz kontakt.
+            </div>
+            <div *ngIf="this.order.ProductionStatus === 1" class="alert alert-warning" role="alert">
+                Zamowienie w trakcie realizacji.
+            </div>
+            <div *ngIf="this.order.ProductionStatus === 2" class="alert alert-success" role="alert">
+                Zamowienie skonczone!
             </div>
 
-            <div class="orderData col-7">
-              <div class="adress">
-                  <p>{{order.name}}
-                  {{order.surname}}</p>
-                  <p>{{order.email}}
-                  {{order.postCode}}
-                  {{order.loacation}}</p>
-                </div>
 
-                <div class="price">
-                  Cena: {{order.price}}
-                </div>
-
-            </div>
-        </div>
+          </div>
       </div>
+    </div>
 
-      <div class="alert alert-primary text-center">
-          {{order.productionStatus}}
-      </div>
-
-  </div>
-
-
-  <div class="powrot">
-      <button type="button" class="btn btn-primary btn-lg btn-block ">Powrot</button>
+    <!-- <div class="powrot">
+      <button type="button" (click)="this.gotoPreviousPage()" class="btn btn-primary btn-lg btn-block ">Powrot</button>
+    </div> -->
   </div>
 </div>
+
+<app-footer></app-footer>

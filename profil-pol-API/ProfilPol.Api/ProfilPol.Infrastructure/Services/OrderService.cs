@@ -38,11 +38,20 @@ namespace ProfilPol.Infrastructure.Services
 
             return _mapper.Map<Order,OrderDto>(order);
         }
+
+        public async Task<List<GetOrderInfoDto>> BrowseAsync(Guid userId)
+        {
+            var orders = await _orderRepository.BrowseAsync(userId);
+
+
+            // TODO add configuration to automapper here
+            return _mapper.Map<List<Order>, List<GetOrderInfoDto>>(orders);
+        }
+
         public async Task AddOrderAsync(Order orderDto)
         {
             await _orderRepository.AddAsync(orderDto);
         }
-
 
         public async Task<OrderDto> CreateAsync(Guid garageId, DateTime createdAt, string email, string name, string surname, string password, string address, string city, string location)
         {
@@ -90,5 +99,6 @@ namespace ProfilPol.Infrastructure.Services
         {
             throw new NotImplementedException();
         }
+
     }
 }

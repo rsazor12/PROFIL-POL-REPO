@@ -15,6 +15,29 @@ namespace ProfilPol.Infrastructure.Mappers
                 cfg.CreateMap<Garage, GarageDto>();
                 cfg.CreateMap<User, AccountDto>();
                 cfg.CreateMap<Order, OrderDto>();
+                cfg.CreateMap<Order, GetOrderInfoDto>()
+                .ConvertUsing(
+                                src => new GetOrderInfoDto(
+                                src.Garage.Id,
+                                src.Garage.OfferDetails.Name,
+                                src.Garage.XLength,
+                                src.Garage.YLength,
+                                src.Garage.ZLength,
+                                src.Price,
+                                src.Garage.SheetColor,
+                                src.ProductionStatus,
+                                src.Garage.OfferDetails.ImagePath,
+                                src.Garage.OfferDetails.Description,
+                                src.OrderDate,
+                                src.User.Name,
+                                src.User.Surname,
+                                src.User.Email,
+                                src.User.Adress,
+                                src.User.City,
+                                src.User.Location
+
+                                )
+                 );
                 //cfg.CreateMap<GarageDto, Garage>();
                 //cfg.CreateMap<UserDto, UserDto>();
                 //cfg.CreateMap<OrderDto, Order>();

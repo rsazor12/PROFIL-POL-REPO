@@ -24,7 +24,7 @@ namespace ProfilPol.Infrastructure.Services
 
         public async Task<GarageDto> getAsync(Guid id)
         {
-            var @garage = await _garageRepository.GetAsync(id);
+            var @garage = await _garageRepository.GetOrFailAsync(id);
 
             return _mapper.Map<GarageDto>(@garage);
         }

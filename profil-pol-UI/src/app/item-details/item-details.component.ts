@@ -10,19 +10,26 @@ import { ItemDetails } from './../shared/models/item-detail';
 import { Component, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { ActivatedRoute } from '@angular/router';
+import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
+import { error } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.scss']
 })
-export class ItemDetailsComponent implements OnInit {
+export class ItemDetailsComponent implements OnInit, OnDestroy {
+
+  public garageId: number;
 
   public itemDetails: ItemDetails;
   public showForm: boolean;
   public orderForm: FormGroup;
   public selectedSheetColor: SheetColor = SheetColor.zlotyDab;
+
+  private sub: any;
+  private subItemDetails: any;
 
   constructor(
     private itemDetailsService: ItemDetailsService,
@@ -31,14 +38,26 @@ export class ItemDetailsComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private loginService: LoginService,
-    private ordersService: OrdersService
+    private ordersService: OrdersService,
+    private routeLink: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.itemDetails = this.itemDetailsService.getMockDetails();
+    // TODO clean here and add error handling
     this.showForm = false;
-
     this.orderForm = this.buildOrderForm();
+
+    this.sub = this.routeLink.params.subscribe(params => {
+          this.subItemDetails = this.itemDetailsService.getItemDetails(params['id'])
+            .subscribe(res =>
+              this.itemDetails = res
+              );
+    });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
+    this.subItemDetails.unsubscribe();
   }
 
   getCommonService(): CommonPageService {

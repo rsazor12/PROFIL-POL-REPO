@@ -1,3 +1,23 @@
 .page-footer {
   background-color: #292c2f;
+  margin-top: 100px;
+}
+
+.social-media .fa
+{
+  color: rgb(40, 97, 218);
+  font-size: 45px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.social-media
+{
+  position: relative;
+}
+
+.social-media:hover
+{
+  background-color: #0d253d;
 }

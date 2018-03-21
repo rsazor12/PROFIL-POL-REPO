@@ -1,7 +1,6 @@
 import { OfferService } from './../shared/services/offer.service';
 import { GarageCardContent } from './../shared/models/garage-card-content';
 import { Component, OnInit } from '@angular/core';
-import { garages } from './garages-to-cards';
 @Component({
   selector: 'app-oferta',
   templateUrl: './oferta.component.html',
@@ -14,6 +13,7 @@ export class OfertaComponent implements OnInit {
     private offerService: OfferService
   ) { }
 
+  // TODO error handling
   ngOnInit() {
     this.offerService.getGarageOfferDetails()
     .subscribe(

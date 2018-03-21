@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProfilPol.Infrastructure.Commands.Garages;
+using ProfilPol.Infrastructure.DTO;
 using ProfilPol.Infrastructure.Services;
 
 namespace ProfilPol.Api.Controllers
@@ -44,9 +45,43 @@ namespace ProfilPol.Api.Controllers
         {
             var garageList = await _garageService.getAllAsync();
 
-            var garageListOfferDetails = garageList.Select(garage => garage.OfferDetails).ToList();
+            var garageListOfferDetails = garageList.Select(garage => 
+                    new OfferDetailsDto(
+                        garage.Id,
+                        garage.OfferDetails.ImagePath,
+                        garage.OfferDetails.Name,
+                        garage.OfferDetails.Available,
+                        garage.OfferDetails.DeliveryTime,
+                        garage.OfferDetails.Description,
+                        garage.OfferDetails.BadgeContent,
+                        garage.OfferDetails.Sizes,
+                        garage.OfferDetails.Price
+                    )
+            ).ToList();
 
             return Json(garageListOfferDetails);
+        }
+
+        [HttpGet("GetItemDetails/{garageId}")]
+        public async Task<IActionResult> GetItemDetails(Guid garageId)
+        {
+            var garage = await _garageService.getAsync(garageId);
+
+            var garageItemDetails = new GarageItemDetailsDto(
+                garage.Id,
+                garage.OfferDetails.Name,
+                garage.OfferDetails.ImagePath,
+                garage.OfferDetails.Price,
+                garage.OfferDetails.Available,
+                garage.OfferDetails.DeliveryTime,
+                garage.SheetColor,
+                garage.SheetType,
+                garage.OfferDetails.Sizes
+                );
+
+            var json = Json(garageItemDetails);
+
+            return json;
         }
 
         [HttpPost]

@@ -13,9 +13,9 @@ export class KontaktComponent implements OnInit {
 
   public contactForm: FormGroup;
 
-  public title = 'My first AGM project';
-  public lat = 51.678418;
-  public lng = 7.809007;
+  // public title = 'My first AGM project';
+  public lat = 49.786218;
+  public lng = 20.255336;
 
   constructor(
     private contactService: ContactService,
@@ -52,7 +52,6 @@ export class KontaktComponent implements OnInit {
       MessageContent: this.contactForm.get('message').value
     };
 
-    // TODO get object from form instead of null
     this.contactService.sendEmail(email)
     .subscribe(
       resp => this.showSuccess(),

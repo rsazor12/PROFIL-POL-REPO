@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProfilPol.Core.Dictionaries;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,6 +10,8 @@ namespace ProfilPol.Core.Domain
         public User User { get; protected set; }
         public Garage Garage { get; protected set; }
         public DateTime OrderDate { get; protected set; }
+        public double Price { get; protected set; }
+        public ProductionStatus ProductionStatus { get; protected set; }
 
         public Order()
         {

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProfilPol.Infrastructure.Commands.Garages;
+using ProfilPol.Infrastructure.Commands.Orders;
+using ProfilPol.Infrastructure.DTO;
 using ProfilPol.Infrastructure.Services;
 
 namespace ProfilPol.Api.Controllers
@@ -31,6 +33,14 @@ namespace ProfilPol.Api.Controllers
             var order = await _orderService.GetAsync(orderId);
 
             return Json(order);
+        }
+
+        [HttpPost("GetOrdersInfo"), AllowAnonymous]
+        public async Task<IActionResult> GetOrdersInfo([FromBody]GetOrdersInfo command)
+        {
+            var orders = await _orderService.BrowseAsync(command.UserId);
+
+            return Json(orders);
         }
 
         [HttpPost, AllowAnonymous]

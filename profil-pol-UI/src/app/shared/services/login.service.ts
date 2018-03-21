@@ -16,7 +16,6 @@ export class LoginService {
 
   baseUrl = 'http://localhost:51950';
   public isLogedIn: boolean = undefined;
-  // public loginFailedState: boolean = false;
 
 
   constructor(

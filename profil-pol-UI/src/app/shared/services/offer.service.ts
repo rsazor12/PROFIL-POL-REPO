@@ -11,6 +11,7 @@ export class OfferService {
   constructor(
     private http: HttpClient
   ) {
+    // TODO it is necesarry ?
     // GEt all garages offer details
     this.getGarageOfferDetails();
   }

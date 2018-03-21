@@ -32,14 +32,48 @@ namespace ProfilPol.Infrastructure.Repositories
                 SheetColor.ZlotyDab,
                 SheetType.IIGatunek,
                 null,null,null,
+                20,20,50),
+            new Garage(
+                Guid.Parse("00000000000000000000000000000003"),
+                new OfferDetails("../../assets/images/garages/DSC_0255.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1000),
+                true,
+                GarageType.Dwuspad,
+                SheetColor.Ocynk,
+                SheetType.IGatunek,
+                null,null,null,
+                10,20,30),
+            new Garage(
+                Guid.Parse("00000000000000000000000000000004"),
+                new OfferDetails("../../assets/images/garages/DSC_0406.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1500),
+                true,
+                GarageType.Jednospad,
+                SheetColor.ZlotyDab,
+                SheetType.IIGatunek,
+                null,null,null,
+                20,20,50),
+                        new Garage(
+                Guid.Parse("00000000000000000000000000000005"),
+                new OfferDetails("../../assets/images/garages/20160602_085134_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1000),
+                true,
+                GarageType.Dwuspad,
+                SheetColor.Ocynk,
+                SheetType.IGatunek,
+                null,null,null,
+                10,20,30),
+            new Garage(
+                Guid.Parse("00000000000000000000000000000006"),
+                new OfferDetails("../../assets/images/garages/20160603_084340_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1500),
+                true,
+                GarageType.Jednospad,
+                SheetColor.ZlotyDab,
+                SheetType.IIGatunek,
+                null,null,null,
                 20,20,50)
         };
 
         public async Task<List<Garage>> GetAllAsync()
         {
             // TODO remove later
-
-
             var garageList = new List<Garage>(_garages);
 
             return await Task.FromResult(garageList);

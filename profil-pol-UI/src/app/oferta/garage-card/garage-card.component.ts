@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -7,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GarageCardComponent implements OnInit {
 
+  @Input() garageId: string;
   @Input() imagePath: string;
   @Input() name: string;
   @Input() price: number;
@@ -15,9 +17,15 @@ export class GarageCardComponent implements OnInit {
   @Input() description: string;
   @Input() badgeContent: string;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  gotoItemDetailsPage() {
+    this.router.navigate(['item-details/' + this.garageId]);
   }
 
 }

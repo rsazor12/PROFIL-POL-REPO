@@ -24,6 +24,13 @@ export class NavbarComponent implements OnInit {
         $('nav').removeClass('black');
       }
     });
+
+    $(document).ready(function() {
+      $('.menu h4').click(function() {
+        alert('click');
+        $('nav ul').toggleClass('active');
+      });
+    });
   }
 
   getCommonPageService(): CommonPageService {

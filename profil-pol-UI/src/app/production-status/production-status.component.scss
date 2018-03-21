@@ -1,16 +1,26 @@
-.container
+.price
 {
-  padding: 50px;
+  padding: 10px;
+  color: rgba($color: #fc5d01, $alpha: 1.0)
 }
 
-.image
+.address
 {
-
+  display: block;
 }
 
-.row
+.city
 {
-
+  display: block;
 }
 
+.location
+{
+  display: block;
+}
+
+.content
+{
+  margin-top: 150px;
+}
 

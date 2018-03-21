@@ -12,11 +12,12 @@ import { ItemDetailsComponent } from './item-details/item-details.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'start' },
-  { path: 'start', component:  ItemDetailsComponent}, // StartComponent
+  { path: 'start', component:  StartComponent}, // StartComponent
   { path: 'oferta', component: OfertaComponent },
   { path: 'kontakt', component: KontaktComponent },
   { path: 'poradnik', component: PoradnikComponent },
   { path: 'galeria', component: GaleriaComponent },
+  { path: 'item-details/:id', component: ItemDetailsComponent},
   { path: 'login', component: LoginComponent },
   { path: 'production-status', component: ProductionStatusComponent }
 ];
