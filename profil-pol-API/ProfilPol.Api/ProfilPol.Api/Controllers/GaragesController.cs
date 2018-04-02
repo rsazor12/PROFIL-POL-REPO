@@ -89,8 +89,7 @@ namespace ProfilPol.Api.Controllers
         public async Task<IActionResult> Post([FromBody]CreateGarage command)
         {
             command.GarageId = Guid.NewGuid();
-            await _garageService.CreateAsync(command.GarageId, command.IsCustom, command.Type, command.SheetColor,
-                                                command.SheetType, command.Windows, command.Doors, command.Roofs, command.XLength, command.YLength, command.ZLength);
+            await _garageService.CreateAsync(command.GarageId, command.offerDetails);
 
             // HTTP 201 code
             return Created($"garages/{command.GarageId}", null);

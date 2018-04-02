@@ -9,8 +9,8 @@ namespace ProfilPol.Core.Domain.Repositories
     {
         Task<User> GetAsync(Guid id);
         Task<User> GetAsync(string email);
-        Task AddAsync(User user);
-        Task UpdateAsync(User oldUser, User newUser);
+        Task<User> AddAsync(User user);
+        Task<User> UpdateAsync(User oldUser, User newUser);
         Task DeleteAsync(User user);
     }
 }

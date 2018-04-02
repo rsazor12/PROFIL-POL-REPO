@@ -53,7 +53,10 @@ namespace ProfilPol.Infrastructure.Services
             await _orderRepository.AddAsync(orderDto);
         }
 
-        public async Task<OrderDto> CreateAsync(Guid garageId, DateTime createdAt, string email, string name, string surname, string password, string address, string city, string location)
+        public async Task<OrderDto> CreateAsync(Guid garageId,
+            DateTime createdAt, SheetColor sheetColor, double garageXLength,
+            double garageYLength, double garageZLength, string email, string name, string surname,
+            string password, string address, string city, string location)
         {
             // code below because only loged in user can make on order
             var user = await _userRepository.GetAsync(email);
@@ -62,27 +65,48 @@ namespace ProfilPol.Infrastructure.Services
             if(user==null)
             {
                 var newUser = new User(Guid.NewGuid(), "normal", name, surname, email, password, address, city, location);
-
-                await _userRepository.AddAsync(newUser);
+                user = await _userRepository.AddAsync(newUser);
             }
             else
             {
                 // if exists update it data
                 var newUser = new User(user.Id, "normal", name, surname, email, password, address, city, location);
 
-
-                await _userRepository.UpdateAsync(user, newUser);
+                user =  await _userRepository.UpdateAsync(user, newUser);
             }
 
-            
 
+            // Get garage with default values
             var garage = await _garageRepository.GetAsync(garageId);
+
+            //// Add attributes specified by user
+            //var specifiedGarage = await _garageRepository.AddAsync(
+            //        new Garage(
+            //        defaultGarage.OfferDetails,
+            //        defaultGarage.IsCustom,
+            //        defaultGarage.Type,
+            //        sheetColor,
+            //        sheetType,
+            //        defaultGarage.Windows,
+            //        defaultGarage.Doors,
+            //        defaultGarage.Roofs,
+            //        garageXLength,
+            //        garageYLength,
+            //        garageZLength)
+            //        );
+
 
 
             var order = new Order(
                 user,
                 garage,
-                createdAt
+                createdAt,
+                garage.OfferDetails.Price,
+                ProductionStatus.ZamowienieZLozone,
+                garageXLength,
+                garageYLength,
+                garageZLength,
+                sheetColor
                 );
 
             await _orderRepository.AddAsync(order);

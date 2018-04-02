@@ -6,8 +6,9 @@ namespace ProfilPol.Core.Dictionaries
 {
     public enum SheetType
     {
-        Ocynk = 0,
-        IGatunek = 1,
-        IIGatunek = 2
+        Default = 0,
+        Ocynk = 1,
+        IGatunek = 2,
+        IIGatunek = 3
     }
 }

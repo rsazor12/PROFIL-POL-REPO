@@ -9,7 +9,7 @@ namespace ProfilPol.Core.Domain.Repositories
     {
         Task<Garage> GetAsync(Guid id);
         Task<List<Garage>> GetAllAsync();
-        Task AddAsync(Garage garage);
+        Task<Garage> AddAsync(Garage garage);
         Task UpdateAsync(Garage garage);
         Task DeleteAsync(Garage garage);
     }

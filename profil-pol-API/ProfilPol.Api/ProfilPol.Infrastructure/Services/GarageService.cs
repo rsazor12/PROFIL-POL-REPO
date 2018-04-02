@@ -37,9 +37,9 @@ namespace ProfilPol.Infrastructure.Services
         }
 
 
-        public async Task CreateAsync(Guid id, bool isCustom, GarageType type, SheetColor sheetColor, SheetType sheetType, List<Window> windows, List<Door> doors, List<Roof> roofs, double xLength, double yLength, double zLength)
+        public async Task CreateAsync(Guid id, OfferDetails offerDetails)
         {
-            var @garage = new Garage(id, null, true, GarageType.Dwuspad, SheetColor.Ocynk, SheetType.Ocynk, null, null, null, 10, 20, 30);
+            var @garage = new Garage(id, offerDetails);
             await _garageRepository.AddAsync(@garage);
         }
 
@@ -51,15 +51,17 @@ namespace ProfilPol.Infrastructure.Services
 
         public async Task UpdateAsync(Guid id, double xLength, double yLength, double zLength)
         {
+            // TODO reimplement
             var @garage = await _garageRepository.GetOrFailAsync(id);
 
-            garage.SetSize(xLength, yLength, zLength);
+            // garage.SetSize(xLength, yLength, zLength);
 
             await _garageRepository.UpdateAsync(@garage);
 
         }
         public async Task DeleteAsync(Guid id)
         {
+            // TODO reimplement
             var @garage = await _garageRepository.GetOrFailAsync(id);
             _garageRepository.DeleteAsync(@garage);
         }

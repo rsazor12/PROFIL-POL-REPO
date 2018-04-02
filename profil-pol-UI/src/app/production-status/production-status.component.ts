@@ -1,3 +1,4 @@
+import { SheetColor } from './../shared/dictionaries/sheet-color.enum';
 import { UserService } from './../shared/services/user.service';
 import { ProductionStatus } from './../shared/dictionaries/production-status';
 import { RoutingHistoryService } from './../shared/services/routing-history.service';
@@ -14,7 +15,7 @@ import { error } from 'selenium-webdriver';
   styleUrls: ['./production-status.component.scss']
 })
 export class ProductionStatusComponent implements OnInit {
-  public orders: GetOrderInfo[] = [];
+  public orders: GetOrderInfo[];
   constructor(
     private ordersService: OrdersService,
     private router: Router,
@@ -27,13 +28,16 @@ export class ProductionStatusComponent implements OnInit {
     this.ordersService
     .getOrdersInfo(this.userService.userDetails.id)
     .subscribe(
-      res => {this.orders = res;
-         alert(JSON.stringify(this.orders)); }
+      res => this.orders = res
     );
   }
 
   gotoPreviousPage() {
     this.router.navigate([this.routingHistoryService.getPreviousUrl()]);
+  }
+
+  mapIndexToEnumValue(index: number): string {
+    return Object.values(SheetColor)[index];
   }
 
 }

@@ -27,16 +27,14 @@ namespace ProfilPol.Infrastructure.Repositories
             return await Task.FromResult(_users.SingleOrDefault(u => u.Email == email));
         }
 
-        public async Task AddAsync(User user)
+        public async Task<User> AddAsync(User user)
         {
             _users.Add(user);
-            await Task.CompletedTask;
+            return await Task.FromResult(user);
         }
 
-        public async Task UpdateAsync(User oldUser, User newUser)
+        public async Task<User> UpdateAsync(User oldUser, User newUser)
         {
-
-            // _users.FirstOrDefault(u => u.Id == user.Id).
 
             // delete old user
              _users.Remove(oldUser);
@@ -44,14 +42,7 @@ namespace ProfilPol.Infrastructure.Repositories
             // add new to list
             _users.Add(newUser);
 
-
-            //// crete new one   
-            //var newUser = new User(user.Id, user.Role, user.Name, user.Surname, user.Email, user.Password, user.Adress, user.City, user.Location);
-
-            //// add to list
-            //_users.Add(user);
-
-            await Task.CompletedTask;
+            return await Task.FromResult(newUser);
 
         }
 

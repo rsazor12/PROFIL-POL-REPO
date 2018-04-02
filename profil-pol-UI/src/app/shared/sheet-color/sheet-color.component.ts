@@ -10,8 +10,6 @@ import { SelectSheetColor } from '../models/select-sheet-color/select-sheet-colo
 })
 export class SheetColorComponent implements OnInit {
 
-  // public selectedColor: SelectSheetColor = { sheetColor: SheetColor.zlotyDab, imagePath: '../../../assets/images/sheetColor/Zloty_dab.PNG'};
-
   public selectedColor: SheetColor;
   // @Input() colorsAndPaths: SelectSheetColor[];
   @Output() select = new EventEmitter<SheetColor>();

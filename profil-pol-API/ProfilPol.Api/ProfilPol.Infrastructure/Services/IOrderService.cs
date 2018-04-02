@@ -15,7 +15,10 @@ namespace ProfilPol.Infrastructure.Services
 
         Task<List<GetOrderInfoDto>> BrowseAsync(Guid userId);
 
-        Task<OrderDto> CreateAsync(Guid garageId, DateTime createdAt, string email, string name, string surname, string password, string address, string city, string location);
+        Task<OrderDto> CreateAsync(Guid garageId,
+            DateTime createdAt, SheetColor sheetColor, double garageXLength,
+            double garageYLength, double garageZLength, string email, string name, string surname,
+            string password, string address, string city, string location);
 
         Task AddOrderAsync(Order order);
 

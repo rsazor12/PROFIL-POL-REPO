@@ -16,17 +16,7 @@ namespace ProfilPol.Infrastructure.Services
         Task<List<GarageDto>> getAllAsync();
 
         Task CreateAsync(
-            Guid id,
-            bool isCustom,
-            GarageType type,
-            SheetColor sheetColor,
-            SheetType sheetType,
-            List<Window> windows,
-            List<Door> doors,
-            List<Roof> roofs,
-            double xLength,
-            double yLength,
-            double zLength);
+            Guid id, OfferDetails offerDetails);
 
         Task AddGarageAsync(GarageDto garage);
 

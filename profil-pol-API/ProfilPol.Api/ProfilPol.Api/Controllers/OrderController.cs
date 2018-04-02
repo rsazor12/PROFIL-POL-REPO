@@ -49,6 +49,10 @@ namespace ProfilPol.Api.Controllers
             var orderDto = await _orderService.CreateAsync(
                 command.GarageId,
                 DateTime.UtcNow,
+                command.SheetColor,
+                command.XLength,
+                command.YLength,
+                command.ZLength,
                 command.UserEmail,
                 command.UserName,
                 command.UserSurname,

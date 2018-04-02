@@ -19,26 +19,24 @@ namespace ProfilPol.Infrastructure.Repositories
                 new User(Guid.Parse("00000000-0000-0000-0000-000000000001"), "normal", "testName3", "testSurname3", "test3@mail", "test3", "adres1", "city1", "location"),
                 new Garage(
                 Guid.Parse("00000000000000000000000000000001"),
-                new OfferDetails("../../assets/images/garages/20160602_085134_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1000),
-                true,
-                GarageType.Dwuspad,
-                SheetColor.Ocynk,
-                SheetType.IGatunek,
-                null,null,null,
-                10,20,30),
-                DateTime.UtcNow),
+                new OfferDetails("../../assets/images/garages/20160602_085134_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1000)
+                ),
+                DateTime.UtcNow,
+                1000,
+                ProductionStatus.ZamowienieZLozone,
+                2,2,2,SheetColor.CiemnyDab),
             new Order(
-                new User(Guid.Parse("00000000-0000-0000-0000-000000000001"), "normal", "testName3", "testSurname3", "test3@mail", "test3", "adres1", "city1", "location"),
+                new User(Guid.Parse("00000000-0000-0000-0000-000000000002"), "normal", "testName3", "testSurname3", "test3@mail", "test3", "adres1", "city1", "location"),
                 new Garage(
                 Guid.Parse("00000000000000000000000000000001"),
-                new OfferDetails("../../assets/images/garages/20160602_085134_HDR.jpg", "testNameBD2", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1000),
-                true,
-                GarageType.Dwuspad,
-                SheetColor.Ocynk,
-                SheetType.IGatunek,
-                null,null,null,
-                10,20,30),
-                DateTime.UtcNow)
+                new OfferDetails("../../assets/images/garages/20160602_085134_HDR.jpg", "testNameBD2", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1000)
+                ),
+                DateTime.UtcNow,
+                1000,
+                ProductionStatus.ZamowienieZLozone,
+                3,3,3,
+                SheetColor.Ocynk
+               )                
         };
 
         public async Task<Order> GetAsync(Guid id)

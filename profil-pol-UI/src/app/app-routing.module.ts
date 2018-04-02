@@ -1,3 +1,4 @@
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { ProductionStatusComponent } from './production-status/production-status.component';
 import { LoginComponent } from './forms/login/login.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
@@ -19,7 +20,9 @@ const routes: Routes = [
   { path: 'galeria', component: GaleriaComponent },
   { path: 'item-details/:id', component: ItemDetailsComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'production-status', component: ProductionStatusComponent }
+  { path: 'production-status', component: ProductionStatusComponent },
+  { path: 'admin-panel', component: AdminPanelComponent }
+
 ];
 
 @NgModule({

@@ -1,16 +1,23 @@
 <div class="responsive-bar">
   <div class="logo">
-    <img src="../../../assets/images/logos/logo.png">
+    <img src="../../../assets/images/logos/logo-transparent.png">
   </div>
-  <div class="menu">
-    <h4>Menu</h4>
-  </div>
+  <!-- <div class="menu border border-white">
+    <!-- <span (click)="this.switchToResponsiveMenu()">Menu</span> -->
+    <!-- <button (click)="this.switchToResponsiveMenu()">MENU</button>
+  </div> --> -->
 </div>
 
-<nav>
+<nav class="border-bottom border-secondary">
   <div class="logo">
     <img src="../../../assets/images/logos/logo-transparent.png">
   </div>
+
+  <div class="menu d-block d-lg-none">
+    <h4>Menu</h4>
+  </div>
+
+
   <!-- <div class="logo-div">
     <div class="roof"></div>
     <h1>Profil-pol</h1>
@@ -44,3 +51,14 @@
   <fa name="user-circle" size=""></fa>
   <span (click)="this.gotoLoginPage()">Zaloguj</span>
 </div>
+
+
+<div class="telephone-number d-none d-lg-block">
+  <p><i class="fa fa-phone"></i> + 01 234 567 88</p>
+</div>
+
+
+
+
+
+

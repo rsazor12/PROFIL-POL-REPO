@@ -10,6 +10,7 @@ declare var $: any;
 })
 export class NavbarComponent implements OnInit {
 
+  public switchResponsiveMenu = false;
 
   constructor(
     private router: Router,
@@ -26,12 +27,18 @@ export class NavbarComponent implements OnInit {
     });
 
     $(document).ready(function() {
-      $('.menu h4').click(function() {
-        alert('click');
+      $('nav .menu h4').click(function() {
+        // alert('click');
         $('nav ul').toggleClass('active');
       });
     });
   }
+
+  // switchToResponsiveMenu() {
+  //   // alert('switch');
+  //   //  this.switchResponsiveMenu = !this.switchResponsiveMenu;
+
+  // }
 
   getCommonPageService(): CommonPageService {
     return this.commonPageService;

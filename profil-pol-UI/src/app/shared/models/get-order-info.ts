@@ -3,23 +3,23 @@ import { ProductionStatus } from '../dictionaries/production-status';
 
 export interface GetOrderInfo {
   // item details
-  GarageId: string;
-  GarageName: string;
-  GarageSizeX: string;
-  GarageSizeY: string;
-  GarageSizeZ: string;
-  Price: number;
-  SheetColor: SheetColor;
-  ProductionStatus: ProductionStatus;
-  ImagePath: string;
-  Description: string;
-  OrderDate: string;
+  garageId: string;
+  garageName: string;
+  garageSizeX: string;
+  garageSizeY: string;
+  garageSizeZ: string;
+  price: number;
+  sheetColor: SheetColor;
+  productionStatus: ProductionStatus;
+  imagePath: string;
+  description: string;
+  orderDate: string;
   // user details
-  UserName: string;
-  UserSurname: string;
-  UserEmail: string;
-  Adress: string;
-  City: string;
-  Location: string;
+  userName: string;
+  userSurname: string;
+  userEmail: string;
+  adress: string;
+  city: string;
+  location: string;
 }
 

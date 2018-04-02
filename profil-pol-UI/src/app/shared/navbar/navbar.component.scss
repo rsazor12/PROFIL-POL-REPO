@@ -54,6 +54,15 @@ body{
   padding-left: 5px;
 }
 
+.telephone-number
+{
+  position: fixed;
+  right: 10px;
+  top: 60px;
+  z-index:13;
+  color: rgb(3, 38, 155);
+}
+
 
 nav
 {
@@ -67,7 +76,7 @@ nav
   transition: .5s;
   z-index: 10;
   background-color: rgba(240, 240, 240, 0.795);
-  border-bottom: 1px solid rgba(73, 68, 68, 0.486);
+  // border-bottom: 1px solid rgba(73, 68, 68, 0.486);
 }
 
 nav.black
@@ -157,7 +166,7 @@ nav .logo-div
   display: none;
 }
 
-@media (max-width: 950px) //768 old value
+@media (max-width: 992px) //768 old value
 {
   .responsive-bar
   {
@@ -179,15 +188,48 @@ nav .logo-div
     height: 50px;
   }
 
-  .responsive-bar .menu h4
+  // .responsive-bar .menu h4
+  // {
+  //   float: right;
+  //   color: #fff;
+  //   margin: 0;
+  //   padding: 0;
+  //   line-height: 50px;
+  //   cursor: pointer;
+  //   text-transform: uppercase;
+  // }
+
+  nav .menu h4
   {
     float: right;
     color: #fff;
     margin: 0;
+    margin-right: -170px;
     padding: 0;
     line-height: 50px;
     cursor: pointer;
     text-transform: uppercase;
+  }
+
+  // .responsive-bar .menu span
+  // {
+  //   float: right;
+  //   color: #fff;
+  //   margin: 0;
+  //   padding: 0;
+  //   line-height: 50px;
+  //   cursor: pointer;
+  //   text-transform: uppercase;
+  // }
+
+  .responsive-bar .menu span:hover
+  {
+    color: red;
+  }
+
+  nav
+  {
+     background: none !important;
   }
 
   nav.black
@@ -227,5 +269,9 @@ nav .logo-div
     line-height: 30px !important;
     color: #fff;
   }
+  .login-button{
+    display: none;
+  }
+
 
 }

@@ -38,6 +38,14 @@ import { HttpClientModule } from '@angular/common/http';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RoutingHistoryService } from './shared/services/routing-history.service';
+
+// TO GALERY
+import 'hammerjs';
+import 'mousetrap';
+import { ModalGalleryModule } from 'angular-modal-gallery';
+import { GarageSizeComponent } from './shared/garage-size/garage-size.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +64,9 @@ import { RoutingHistoryService } from './shared/services/routing-history.service
     LoginComponent,
     ProductionStatusComponent,
     ItemDetailsComponent,
-    SheetColorComponent
+    SheetColorComponent,
+    GarageSizeComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +84,7 @@ import { RoutingHistoryService } from './shared/services/routing-history.service
     ReactiveFormsModule,
     HttpClientModule,
     ToastModule.forRoot(),
-
+    ModalGalleryModule.forRoot()
   ],
   providers: [
     CommonPageService,

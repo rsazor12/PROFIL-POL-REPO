@@ -1,5 +1,12 @@
 <app-navbar></app-navbar>
-<p>
-  galeria works!
-</p>
+
+<div class="container content">
+  <section>
+    <h3>Galeria naszych realizacji...</h3>
+    <br>
+    <ks-modal-gallery [modalImages]="images"
+                      [plainGalleryConfig]="plainGalleryGrid"></ks-modal-gallery>
+  </section>
+</div>
+
 <app-footer></app-footer>

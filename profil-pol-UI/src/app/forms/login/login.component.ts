@@ -79,20 +79,32 @@ export class LoginComponent implements OnInit {
 
 
   public login() {
-    this.loginService.login(this.loginForm.get('email').value, this.loginForm.get('password').value)
-    .pipe(catchError(this.handleError))
-    .subscribe(
-      token => {
-        localStorage.setItem('auth_token', token);
-        this.loginService.isLogedIn = true;
-        this.showSuccess();
-        this.userService.getUserDetailsByEmail(this.loginForm.get('email').value);
-        this.router.navigate([this.routingHistoryService.getPreviousUrl()]);
-    },
-    error => {
-      this.showError();
+    // IF admin
+    if (this.loginForm.get('email').value === 'admin@mail' && this.loginForm.get('password').value === 'superhaslo123') {
+      this.router.navigate(['admin-panel']);
+    } else {
+      // IF normal user
+      this.loginService.login(this.loginForm.get('email').value, this.loginForm.get('password').value)
+      .pipe(catchError(this.handleError))
+      .subscribe(
+        token => {
+          localStorage.setItem('auth_token', token);
+          this.loginService.isLogedIn = true;
+          this.showSuccess();
+          this.userService.getUserDetailsByEmail(this.loginForm.get('email').value);
+          // TODO obszywka
+          if (this.routingHistoryService.getPreviousUrl() === 'admin-panel') {
+            this.router.navigate(['production-status']);
+          } else {
+            this.router.navigate([this.routingHistoryService.getPreviousUrl()]);
+          }
+
+      },
+      error => {
+        this.showError();
+      }
+    );
     }
-  );
 }
 
 logout() {

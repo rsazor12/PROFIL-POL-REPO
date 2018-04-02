@@ -17,58 +17,28 @@ namespace ProfilPol.Infrastructure.Repositories
         {
             new Garage(
                 Guid.Parse("00000000000000000000000000000001"),
-                new OfferDetails("../../assets/images/garages/20160602_085134_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1000),
-                true,
-                GarageType.Dwuspad,
-                SheetColor.Ocynk,
-                SheetType.IGatunek,
-                null,null,null,
-                10,20,30),
+                new OfferDetails("../../assets/images/garages/20160602_085134_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1000)
+                ),
             new Garage(
                 Guid.Parse("00000000000000000000000000000002"),
-                new OfferDetails("../../assets/images/garages/20160603_084340_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1500),
-                true,
-                GarageType.Jednospad,
-                SheetColor.ZlotyDab,
-                SheetType.IIGatunek,
-                null,null,null,
-                20,20,50),
+                new OfferDetails("../../assets/images/garages/20160603_084340_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1500)
+                ),
             new Garage(
                 Guid.Parse("00000000000000000000000000000003"),
-                new OfferDetails("../../assets/images/garages/DSC_0255.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1000),
-                true,
-                GarageType.Dwuspad,
-                SheetColor.Ocynk,
-                SheetType.IGatunek,
-                null,null,null,
-                10,20,30),
+                new OfferDetails("../../assets/images/garages/DSC_0255.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1000)
+                ),
             new Garage(
                 Guid.Parse("00000000000000000000000000000004"),
-                new OfferDetails("../../assets/images/garages/DSC_0406.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1500),
-                true,
-                GarageType.Jednospad,
-                SheetColor.ZlotyDab,
-                SheetType.IIGatunek,
-                null,null,null,
-                20,20,50),
-                        new Garage(
+                new OfferDetails("../../assets/images/garages/DSC_0406.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1500)
+                ),
+            new Garage(
                 Guid.Parse("00000000000000000000000000000005"),
-                new OfferDetails("../../assets/images/garages/20160602_085134_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1000),
-                true,
-                GarageType.Dwuspad,
-                SheetColor.Ocynk,
-                SheetType.IGatunek,
-                null,null,null,
-                10,20,30),
+                new OfferDetails("../../assets/images/garages/20160602_085134_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1000)
+               ),
             new Garage(
                 Guid.Parse("00000000000000000000000000000006"),
-                new OfferDetails("../../assets/images/garages/20160603_084340_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1500),
-                true,
-                GarageType.Jednospad,
-                SheetColor.ZlotyDab,
-                SheetType.IIGatunek,
-                null,null,null,
-                20,20,50)
+                new OfferDetails("../../assets/images/garages/20160603_084340_HDR.jpg", "testNameBD", true, "4", "destDescription", "Nowosc z BD", new string[]{"1x2","2x3"}, 1500)
+                )
         };
 
         public async Task<List<Garage>> GetAllAsync()
@@ -84,10 +54,10 @@ namespace ProfilPol.Infrastructure.Repositories
             return await Task.FromResult(_garages.SingleOrDefault(g => g.Id == id));
         }
 
-        public async Task AddAsync(Garage garage)
+        public async Task<Garage> AddAsync(Garage garage)
         {
             _garages.Add(garage);
-            await Task.CompletedTask;
+            return await Task.FromResult(garage);
         }
 
         public async Task UpdateAsync(Garage garage)

@@ -15,7 +15,12 @@ namespace ProfilPol.Infrastructure.Commands.Garages
         public string Password { get; set; }
 
         public double Price { get; set; }
+
+        // Garage details
         public SheetColor SheetColor{ get; set; }
+        public double XLength;
+        public double YLength;
+        public double ZLength;
         public string Adress { get; set; }
         public string City { get; set; }
         public string Location { get; set; }
