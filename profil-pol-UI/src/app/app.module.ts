@@ -1,3 +1,4 @@
+import { AdminPanelService } from './shared/services/admin-panel.service';
 import { ContactService } from './shared/services/contact.service';
 import { OfferService } from './shared/services/offer.service';
 import { UserService } from './shared/services/user.service';
@@ -34,7 +35,7 @@ import { ProductionStatusComponent } from './production-status/production-status
 import { CommonPageService } from './shared/services/common-page.service';
 import { ItemDetailsComponent } from './item-details/item-details.component';
 import { SheetColorComponent } from './shared/sheet-color/sheet-color.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RoutingHistoryService } from './shared/services/routing-history.service';
@@ -45,6 +46,14 @@ import 'mousetrap';
 import { ModalGalleryModule } from 'angular-modal-gallery';
 import { GarageSizeComponent } from './shared/garage-size/garage-size.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+
+// Kendo
+import { GridModule } from '@progress/kendo-angular-grid';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { DialogModule } from '@progress/kendo-angular-dialog';
+import { GridEditFormComponent } from './admin-panel/grid-edit-form/grid-edit-form.component';
+import { EditService } from './admin-panel/edit.service';
+// import { EditService } from '@progress/kendo-angular-grid/dist/es/editing/edit.service';
 
 @NgModule({
   declarations: [
@@ -66,7 +75,8 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     ItemDetailsComponent,
     SheetColorComponent,
     GarageSizeComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    GridEditFormComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +94,11 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     ReactiveFormsModule,
     HttpClientModule,
     ToastModule.forRoot(),
-    ModalGalleryModule.forRoot()
+    ModalGalleryModule.forRoot(),
+    GridModule,
+    DropDownsModule,
+    DialogModule,
+    HttpClientJsonpModule
   ],
   providers: [
     CommonPageService,
@@ -94,7 +108,9 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     RoutingHistoryService,
     UserService,
     OfferService,
-    ContactService
+    ContactService,
+    AdminPanelService,
+    EditService
   ],
   bootstrap: [AppComponent]
 })
