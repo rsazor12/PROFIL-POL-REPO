@@ -39,6 +39,14 @@ namespace ProfilPol.Infrastructure.Services
             return _mapper.Map<Order,OrderDto>(order);
         }
 
+        // get all orders
+        public async Task<List<GetOrderInfoDto>> GetAsync()
+        {
+            var orders = await _orderRepository.GetAsync();
+
+            return _mapper.Map<List<Order>, List<GetOrderInfoDto>>(orders);
+        }
+
         public async Task<List<GetOrderInfoDto>> BrowseAsync(Guid userId)
         {
             var orders = await _orderRepository.BrowseAsync(userId);

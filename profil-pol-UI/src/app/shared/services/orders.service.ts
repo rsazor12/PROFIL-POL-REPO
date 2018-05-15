@@ -45,6 +45,22 @@ export class OrdersService {
 
       }
 
+      public getAllOrdersInfo(): Observable<GetOrderInfo[]> {
+
+        // TODO use env here
+        const getUserDetailsUrl = 'http://localhost:51950/Order';
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type':  'application/json'
+          })
+        };
+
+         // const getOrdersCommand = JSON.stringify({UserId: userId});
+
+          return this.http.get<GetOrderInfo[]>(getUserDetailsUrl, httpOptions);
+
+         }
+
   // public getFakeOrders(): GetOrderInfo[] {
 
   //   const orders: GetOrderInfo[] = [

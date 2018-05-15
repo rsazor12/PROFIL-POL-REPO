@@ -17,10 +17,24 @@
   <button class='k-button' [disabled]="!editService.hasChanges()" (click)="saveChanges(grid);">Save Changes</button>
   <button class='k-button' [disabled]="!editService.hasChanges()" (click)="cancelChanges(grid);">Cancel Changes</button>
 </ng-template>
-<kendo-grid-column field="ProductName" title="Product Name"></kendo-grid-column>
+<!-- <kendo-grid-column field="ProductName" title="Product Name"></kendo-grid-column>
 <kendo-grid-column field="UnitPrice" editor="numeric" title="Price"></kendo-grid-column>
 <kendo-grid-column field="Discontinued" editor="boolean" title="Discontinued"></kendo-grid-column>
-<kendo-grid-column field="UnitsInStock" editor="numeric" title="Units In Stock"></kendo-grid-column>
+<kendo-grid-column field="UnitsInStock" editor="numeric" title="Units In Stock"></kendo-grid-column> -->
+<kendo-grid-column field="garageName" title="Nazwa garazu."></kendo-grid-column>
+<kendo-grid-column field="garageSizeX" title="Szerokosc"></kendo-grid-column>
+<kendo-grid-column field="garageSizeY" title="Dlugosc"></kendo-grid-column>
+<kendo-grid-column field="garageSizeZ" title="Wysokosc"></kendo-grid-column>
+<kendo-grid-column field="price" title="Cena"></kendo-grid-column>
+<kendo-grid-column field="sheetColor" title="Kolor Blachy"></kendo-grid-column>
+<kendo-grid-column field="productionStatus" title="Status"></kendo-grid-column>
+<kendo-grid-column field="orderDate" title="Data"></kendo-grid-column>
+<kendo-grid-column field="userName" title="Imie"></kendo-grid-column>
+<kendo-grid-column field="userSurname" title="Nazwisko"></kendo-grid-column>
+<kendo-grid-column field="userEmail" title="Email"></kendo-grid-column>
+<kendo-grid-column field="adress" title="Adres"></kendo-grid-column>
+<kendo-grid-column field="city" title="Miasto"></kendo-grid-column>
+<kendo-grid-column field="location" title="Wojewodztwo"></kendo-grid-column>
 <kendo-grid-command-column title="command" width="220">
   <ng-template kendoGridCellTemplate let-isNew="isNew">
       <button kendoGridRemoveCommand>Remove</button>

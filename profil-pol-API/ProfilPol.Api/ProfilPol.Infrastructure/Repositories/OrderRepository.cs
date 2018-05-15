@@ -44,6 +44,12 @@ namespace ProfilPol.Infrastructure.Repositories
             return await Task.FromResult(_orders.SingleOrDefault(g => g.Id == id));
         }
 
+        //get all orders
+        public async Task<List<Order>> GetAsync()
+        {
+            return await Task.FromResult(_orders.ToList());
+        }
+
         public async Task<List<Order>> BrowseAsync(Guid userId)
         {
             return await Task.FromResult(_orders.Where(order => order.User.Id == userId).ToList());
@@ -65,7 +71,6 @@ namespace ProfilPol.Infrastructure.Repositories
 
             await Task.CompletedTask;
         }
-
 
     }
 }

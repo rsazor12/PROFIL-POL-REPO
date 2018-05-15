@@ -13,6 +13,8 @@ namespace ProfilPol.Infrastructure.Services
     {
         Task<OrderDto> GetAsync(Guid id);
 
+        Task<List<GetOrderInfoDto>> GetAsync();
+
         Task<List<GetOrderInfoDto>> BrowseAsync(Guid userId);
 
         Task<OrderDto> CreateAsync(Guid garageId,

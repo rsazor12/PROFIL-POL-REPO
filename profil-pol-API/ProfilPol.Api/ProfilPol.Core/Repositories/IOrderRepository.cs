@@ -9,6 +9,7 @@ namespace ProfilPol.Core.Repositories
     public interface IOrderRepository
     {
         Task<Order> GetAsync(Guid id);
+        Task<List<Order>> GetAsync();
         Task<List<Order>> BrowseAsync(Guid userId);
         Task AddAsync(Order garage);
         Task UpdateAsync(Order garage);

@@ -1,3 +1,5 @@
+import { UserService } from './../shared/services/user.service';
+import { OrdersService } from './../shared/services/orders.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -30,7 +32,10 @@ export class EditService extends BehaviorSubject<any[]> {
     private updatedItems: any[] = [];
     private deletedItems: any[] = [];
 
-    constructor(private http: HttpClient) {
+    constructor(
+      private http: HttpClient,
+      private ordersService: OrdersService
+    ) {
         super([]);
     }
 
@@ -138,9 +143,11 @@ export class EditService extends BehaviorSubject<any[]> {
     }
 
     private fetch(action: string = '', data?: any): Observable<any[]> {
-        return this.http
-            .jsonp(`https://demos.telerik.com/kendo-ui/service/Products/${action}?${this.serializeModels(data)}`, 'callback')
-            .pipe(map(res => <any[]>res));
+        // return this.http
+        //     .jsonp(`https://demos.telerik.com/kendo-ui/service/Products/${action}?${this.serializeModels(data)}`, 'callback')
+        //     .pipe(map(res => <any[]>res));
+
+        return  this.ordersService.getAllOrdersInfo();
     }
 
     private serializeModels(data?: any): string {

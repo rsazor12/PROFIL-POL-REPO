@@ -35,6 +35,16 @@ namespace ProfilPol.Api.Controllers
             return Json(order);
         }
 
+        // get all orders
+        [HttpGet, AllowAnonymous]
+        public async Task<IActionResult> Get()
+        {
+            var orders = await _orderService.GetAsync();
+
+            return Json(orders);
+        }
+
+        // get orders for specify user
         [HttpPost("GetOrdersInfo"), AllowAnonymous]
         public async Task<IActionResult> GetOrdersInfo([FromBody]GetOrdersInfo command)
         {

@@ -1,3 +1,7 @@
+import { SheetColor } from './../shared/dictionaries/sheet-color.enum';
+import { GetOrderInfo } from './../shared/models/get-order-info';
+import { UserService } from './../shared/services/user.service';
+import { OrdersService } from './../shared/services/orders.service';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit, Inject } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
@@ -24,12 +28,24 @@ export class AdminPanelComponent implements OnInit {
   };
 
   public changes: any = {};
+  private orders: GetOrderInfo[];
 
-  constructor(private formBuilder: FormBuilder, public editService: EditService) {
+  constructor(
+    private formBuilder: FormBuilder,
+    // private ordersService: OrdersService,
+    // private userService: UserService,
+    public editService: EditService) {
+
   }
 
   public ngOnInit(): void {
       this.view = this.editService.pipe(map(data => process(data, this.gridState)));
+
+    //   this.ordersService
+    // .getOrdersInfo(this.userService.userDetails.id)
+    // .subscribe(
+    //   res => this.orders = res
+    // );
 
       this.editService.read();
   }
@@ -95,11 +111,21 @@ export class AdminPanelComponent implements OnInit {
   // TODO change model of this function
   public createFormGroup(dataItem: any): FormGroup {
       return this.formBuilder.group({
-          'ProductID': dataItem.ProductID,
-          'ProductName': [dataItem.ProductName, Validators.required],
-          'UnitPrice': dataItem.UnitPrice,
-          'UnitsInStock': [dataItem.UnitsInStock, Validators.compose([Validators.required, Validators.pattern('^[0-9]{1,3}')])],
-          'Discontinued': dataItem.Discontinued
+          'garageName': dataItem.garageName,
+          'garageSizeX': dataItem.garageSizeX, // [dataItem.garageSizeX, Validators.required],
+          'garageSizeY': dataItem.garageSizeY, // [dataItem.garageSizeY, Validators.required],
+          'garageSizeZ': dataItem.garageSizeZ, // [dataItem.garageSizeZ, Validators.required],
+          'price': dataItem.price,
+          // tslint:disable-next-line:max-line-length
+          'sheetColor': dataItem.SheetColor, // [dataItem.sheetColor, Validators.compose([Validators.required/*, Validators.pattern('')]*/])], // TODO values from enum
+          'productionStatus': dataItem.productionStatus,
+          'orderDate': dataItem.orderDate,
+          'userName': dataItem.userName,
+          'userSurname': dataItem.userSurname,
+          'userEmail': dataItem.userEmail,
+          'adress': dataItem.adress,
+          'city': dataItem.city,
+          'location' : dataItem.location
       });
   }
 
