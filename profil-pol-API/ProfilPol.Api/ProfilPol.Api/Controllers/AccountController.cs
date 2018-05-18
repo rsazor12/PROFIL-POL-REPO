@@ -17,13 +17,17 @@ namespace ProfilPol.Api.Controllers
     public class AccountController : ApiControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
+
         public IConfiguration Configuration { get; }
 
         public AccountController(
             IUserService userService,
+            IEmailService emailService,
             IConfiguration configuration)
         {
             _userService = userService;
+            _emailService = emailService;
             Configuration = configuration;
         }
 
@@ -31,35 +35,44 @@ namespace ProfilPol.Api.Controllers
         [HttpPost("SendEmail"), AllowAnonymous]
         public async Task<IActionResult> SendEmail([FromBody]SendEmail command)
         {
-            // TODO place hard coded values in appsettings
-            var message = new MimeMessage();
-            // message.From.Add(new MailboxAddress("profilpol.biuro@gmail.com"));
-            message.From.Add(new MailboxAddress(Configuration["Email:SenderAddress"]));
+            var subject = $"Pytanie: Uzytkownik {command.UserName} ({command.UserAddress})";
+            var messageBody = $"Uzytkownik: {command.UserAddress} wyslal wiadomosc: \n\n\n" + command.MessageContent;
 
-            message.To.Add(new MailboxAddress(Configuration["Email:ReceiverAddress"]));
-            message.Subject = $"Pytanie: Uzytkownik {command.UserName} ({command.UserAddress})";
-            message.Body = new TextPart("plain")
-            {
-                Text = $"Uzytkownik: {command.UserAddress} wyslal wiadomosc: \n\n\n"
-                       + command.MessageContent
-            };
+            _emailService.SendEmailFromWebsite(
+                command.UserAddress,
+                subject,
+                messageBody
+                );
 
-            using (var client = new SmtpClient())
-            {
-                try
-                {
-                    client.Connect("smtp.gmail.com", 587, false);
-                    client.Authenticate(Configuration["Email:SenderAddress"], Configuration["Email:SenderPassword"]);
 
-                    client.Send(message);
-                    client.Disconnect(true);
-                }
-                catch(Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+
+            //var message = new MimeMessage();
+            //message.From.Add(new MailboxAddress(Configuration["Email:SenderAddress"]));
+
+            //message.To.Add(new MailboxAddress(Configuration["Email:ReceiverAddress"]));
+            //message.Subject = $"Pytanie: Uzytkownik {command.UserName} ({command.UserAddress})";
+            //message.Body = new TextPart("plain")
+            //{
+            //    Text = $"Uzytkownik: {command.UserAddress} wyslal wiadomosc: \n\n\n"
+            //           + command.MessageContent
+            //};
+
+            //using (var client = new SmtpClient())
+            //{
+            //    try
+            //    {
+            //        client.Connect("smtp.gmail.com", 587, false);
+            //        client.Authenticate(Configuration["Email:SenderAddress"], Configuration["Email:SenderPassword"]);
+
+            //        client.Send(message);
+            //        client.Disconnect(true);
+            //    }
+            //    catch(Exception ex)
+            //    {
+            //        Console.WriteLine(ex.Message);
+            //    }
                 
-            }
+            //}
 
             return Ok();
         }

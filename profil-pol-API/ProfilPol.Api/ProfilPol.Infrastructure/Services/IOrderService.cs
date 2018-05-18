@@ -24,8 +24,9 @@ namespace ProfilPol.Infrastructure.Services
 
         Task AddOrderAsync(Order order);
 
-        Task UpdateAsync(Order order);
+        Task UpdateAsync(UpdateOrderDto order);
+        Task UpdateAsync(List<UpdateOrderDto> order);
 
-        Task DeleteAsync(Guid id);
+        Task<List<GetOrderInfoDto>> DeleteAsync(List<Guid> ids);
     }
 }

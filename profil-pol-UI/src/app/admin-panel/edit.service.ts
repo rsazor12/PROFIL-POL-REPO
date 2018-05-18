@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Observable } from 'rxjs/Observable';
 import { zip } from 'rxjs/observable/zip';
 import { map } from 'rxjs/operators/map';
+import { GetOrderInfo } from '../shared/models/get-order-info';
 
 const CREATE_ACTION = 'create';
 const UPDATE_ACTION = 'update';
@@ -92,8 +93,8 @@ export class EditService extends BehaviorSubject<any[]> {
         super.next(this.data);
     }
 
-    public isNew(item: any): boolean {
-        return !item.ProductID;
+    public isNew(item: GetOrderInfo): boolean {
+        return !item.orderId;
     }
 
     public hasChanges(): boolean {
@@ -107,15 +108,16 @@ export class EditService extends BehaviorSubject<any[]> {
 
         const completed = [];
         if (this.deletedItems.length) {
-            completed.push(this.fetch(REMOVE_ACTION, this.deletedItems));
+            // completed.push(this.fetch(REMOVE_ACTION, this.deletedItems));
+            completed.push(this.ordersService.removeOrders(this.deletedItems.map(order => order.orderId)));
         }
 
         if (this.updatedItems.length) {
-            completed.push(this.fetch(UPDATE_ACTION, this.updatedItems));
+            completed.push(this.ordersService.UpdateOrders(this.updatedItems));
         }
 
         if (this.createdItems.length) {
-            completed.push(this.fetch(CREATE_ACTION, this.createdItems));
+            completed.push(this.ordersService.CreateOrders(this.createdItems));
         }
 
         this.reset();

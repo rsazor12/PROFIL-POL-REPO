@@ -27,39 +27,83 @@ export class OrdersService {
         const createOrderCommand = JSON.stringify(order);
 
         return this.http.post<any>(getUserDetailsUrl, createOrderCommand, httpOptions);
-    }
+  }
 
-    public getOrdersInfo(userId: string): Observable<GetOrderInfo[]> {
+  public CreateOrders(orders: MakeOrder[]): Observable<any> {
 
-     // TODO use env here
-     const getUserDetailsUrl = 'http://localhost:51950/Order/GetOrdersInfo';
-     const httpOptions = {
-       headers: new HttpHeaders({
-         'Content-Type':  'application/json'
-       })
-     };
+    // TODO use env here
+    const getUserDetailsUrl = 'http://localhost:51950/Order/CreateOrders';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
 
-       const getOrdersCommand = JSON.stringify({UserId: userId});
+      const createOrderCommand = JSON.stringify(orders);
 
-       return this.http.post<GetOrderInfo[]>(getUserDetailsUrl, getOrdersCommand, httpOptions);
+      return this.http.post<any>(getUserDetailsUrl, createOrderCommand, httpOptions);
+}
 
-      }
+public UpdateOrders(orders: GetOrderInfo[]) {
+  // TODO use env here
+  const getUserDetailsUrl = 'http://localhost:51950/order/UpdateOrders';
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
 
-      public getAllOrdersInfo(): Observable<GetOrderInfo[]> {
+    const getOrdersCommand = JSON.stringify(orders);
 
-        // TODO use env here
-        const getUserDetailsUrl = 'http://localhost:51950/Order';
-        const httpOptions = {
-          headers: new HttpHeaders({
-            'Content-Type':  'application/json'
-          })
-        };
+    return this.http.post<GetOrderInfo[]>(getUserDetailsUrl, getOrdersCommand, httpOptions);
+}
 
-         // const getOrdersCommand = JSON.stringify({UserId: userId});
+public removeOrders(ids: string[]) {
+    // TODO use env here
+    const getUserDetailsUrl = 'http://localhost:51950/order/RemoveOrders';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
 
-          return this.http.get<GetOrderInfo[]>(getUserDetailsUrl, httpOptions);
+      const getOrdersCommand = JSON.stringify({OrderIds: ids});
 
-         }
+      return this.http.post<GetOrderInfo[]>(getUserDetailsUrl, getOrdersCommand, httpOptions);
+}
+
+  public getOrdersInfo(userId: string): Observable<GetOrderInfo[]> {
+
+    // TODO use env here
+    const getUserDetailsUrl = 'http://localhost:51950/Order/GetOrdersInfo';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+
+      const getOrdersCommand = JSON.stringify({UserId: userId});
+
+      return this.http.post<GetOrderInfo[]>(getUserDetailsUrl, getOrdersCommand, httpOptions);
+
+  }
+
+  public getAllOrdersInfo(): Observable<GetOrderInfo[]> {
+
+    // TODO use env here
+    const getUserDetailsUrl = 'http://localhost:51950/Order';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+
+      // const getOrdersCommand = JSON.stringify({UserId: userId});
+
+      return this.http.get<GetOrderInfo[]>(getUserDetailsUrl, httpOptions);
+
+  }
+
 
   // public getFakeOrders(): GetOrderInfo[] {
 

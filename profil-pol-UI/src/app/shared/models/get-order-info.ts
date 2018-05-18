@@ -3,6 +3,7 @@ import { ProductionStatus } from '../dictionaries/production-status';
 
 export interface GetOrderInfo {
   // item details
+  orderId: string;
   garageId: string;
   garageName: string;
   garageSizeX: string;

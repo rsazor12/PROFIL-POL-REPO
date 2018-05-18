@@ -60,16 +60,69 @@ namespace ProfilPol.Infrastructure.Repositories
             _orders.Add(order);
             await Task.CompletedTask;
         }
-        public async Task UpdateAsync(Order order)
+
+        // update by id
+        public async Task UpdateAsync(Order srcOrder)
         {
-            throw new NotImplementedException();
+            // List<Order> ordersToUpdate = new List<Order>();
+
+                var destOrder = _orders.Where(order => srcOrder.Id == order.Id).FirstOrDefault();
+
+                if (destOrder != null)
+                {
+                    updateOrder(srcOrder, destOrder);
+                }
+
         }
 
-        public async Task DeleteAsync(Order order)
+        // update by id from list
+        public async Task UpdateAsync(List<Order> orders)
         {
-            _orders.Remove(order);
+            // List<Order> ordersToUpdate = new List<Order>();
 
-            await Task.CompletedTask;
+            orders.ToList().ForEach(srcOrder =>
+            {
+                var destOrder = _orders.Where(order => srcOrder.Id == order.Id).FirstOrDefault();
+
+                if (destOrder != null)
+                {
+                    updateOrder(srcOrder, destOrder);
+                }
+
+            });
+        }
+
+        private void updateOrder(Order source, Order destination)
+        {
+            destination.Garage = source.Garage;
+            destination.OrderDate = source.OrderDate;
+            destination.Price = source.Price;
+            destination.ProductionStatus = source.ProductionStatus;
+            destination.SheetColor = source.SheetColor;
+            destination.User = source.User;
+            destination.XLength = source.XLength;
+            destination.YLength = source.YLength;
+            destination.ZLength = source.ZLength;
+        }
+
+        public async Task<List<Order>> DeleteAsync(List<Guid> ids)
+        {
+            List<Order> ordersToDelete = new List<Order>();
+
+            // get all orders to delete and remove from repository
+            ids.ToList().ForEach(id =>
+            {
+                var orderToDelete = _orders.Where(order => order.Id == id).FirstOrDefault();
+
+                if (orderToDelete != null)
+                {
+                    ordersToDelete.Add(orderToDelete);
+                    _orders.Remove(orderToDelete);
+                }
+               
+            });
+
+            return await Task.FromResult(ordersToDelete);
         }
 
     }

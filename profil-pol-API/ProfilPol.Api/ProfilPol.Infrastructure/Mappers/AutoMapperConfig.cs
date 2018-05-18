@@ -18,6 +18,7 @@ namespace ProfilPol.Infrastructure.Mappers
                 cfg.CreateMap<Order, GetOrderInfoDto>()
                 .ConvertUsing(
                                 src => new GetOrderInfoDto(
+                                src.Id,
                                 src.Garage.Id,
                                 src.Garage.OfferDetails.Name,
                                 src.XLength,
@@ -38,9 +39,20 @@ namespace ProfilPol.Infrastructure.Mappers
 
                                 )
                  );
-                //cfg.CreateMap<GarageDto, Garage>();
-                //cfg.CreateMap<UserDto, UserDto>();
-                //cfg.CreateMap<OrderDto, Order>();
+
+                cfg.CreateMap<UpdateOrderDto, Order>()
+                .ForMember(dest => dest.Garage, opt => opt.Ignore());
+                //.ConvertUsing(
+                //                src => new Order(
+                //                src.OrderId,
+                //                new User(src.us
+                //                )
+                //                );
+            //.ForMember(dest => dest.Garage, opt => opt.Ignore())
+
+
+                                //cfg.CreateMap<UserDto, UserDto>();
+                                //cfg.CreateMap<OrderDto, Order>();
             })
             .CreateMapper();
     }

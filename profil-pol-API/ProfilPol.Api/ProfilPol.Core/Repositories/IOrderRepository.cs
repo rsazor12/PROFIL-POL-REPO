@@ -11,8 +11,9 @@ namespace ProfilPol.Core.Repositories
         Task<Order> GetAsync(Guid id);
         Task<List<Order>> GetAsync();
         Task<List<Order>> BrowseAsync(Guid userId);
-        Task AddAsync(Order garage);
-        Task UpdateAsync(Order garage);
-        Task DeleteAsync(Order garage);
+        Task AddAsync(Order order);
+        Task UpdateAsync(Order order);
+        Task UpdateAsync(List<Order> order);
+        Task<List<Order>> DeleteAsync(List<Guid> ids);
     }
 }

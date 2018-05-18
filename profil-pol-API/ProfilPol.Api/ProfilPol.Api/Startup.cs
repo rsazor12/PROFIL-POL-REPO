@@ -62,6 +62,7 @@ namespace ProfilPol.Api
             services.AddScoped<IGarageService, GarageService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IEmailService, EmailService>();
             // Pernament objects
             services.AddSingleton(AutoMapperConfig.Initialize()); // methods Initialize return IMapper so <Imapper> is not necessary here
 
