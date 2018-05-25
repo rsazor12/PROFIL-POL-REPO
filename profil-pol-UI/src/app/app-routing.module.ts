@@ -18,7 +18,9 @@ const routes: Routes = [
   { path: 'kontakt', component: KontaktComponent },
   { path: 'poradnik', component: PoradnikComponent },
   { path: 'galeria', component: GaleriaComponent },
-  { path: 'item-details/:id', component: ItemDetailsComponent},
+  // tslint:disable-next-line:max-line-length
+  // { path: 'item-details/:idOffer/:imagePath/:name/:available/:longDescription/:price/:availableSizes/:availableDoors/:availableSheets', component: ItemDetailsComponent},
+  { path: 'item-details/:idOffer', component: ItemDetailsComponent},
   { path: 'login', component: LoginComponent },
   { path: 'production-status', component: ProductionStatusComponent },
   { path: 'admin-panel', component: AdminPanelComponent }

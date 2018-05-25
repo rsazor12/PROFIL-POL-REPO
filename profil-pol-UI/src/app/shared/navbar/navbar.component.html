@@ -9,9 +9,12 @@
 </div>
 
 <nav class="border-bottom border-secondary">
-  <div class="logo">
+
+
+  <div (click) = "this.gotoStartPage()" class="logo">
     <img src="../../../assets/images/logos/logo-transparent.png">
   </div>
+
 
   <div class="menu d-block d-lg-none">
     <h4>Menu</h4>
@@ -25,19 +28,19 @@
   </div> -->
   <ul>
     <li>
-      <a class="active" (click)="this.gotoStartPage()">Start</a>
+      <a [ngClass]="{'active': this.checkIfPageIsActive('start')}"  (click)="this.gotoStartPage()">Start</a>
     </li>
     <li>
-      <a (click)="this.gotoOfertaPage()">Oferta</a>
+      <a [ngClass]="{'active': this.checkIfPageIsActive('oferta')}" (click)="this.gotoOfertaPage()">Oferta</a>
     </li>
     <li>
-      <a (click)="this.gotoKontaktPage()">Kontakt</a>
+      <a [ngClass]="{'active': this.checkIfPageIsActive('kontakt')}" (click)="this.gotoKontaktPage()">Kontakt</a>
     </li>
     <li>
-      <a (click)="this.gotoPoradnikPage()">Poradnik</a>
+      <a [ngClass]="{'active': this.checkIfPageIsActive('poradnik')}" (click)="this.gotoPoradnikPage()">Poradnik</a>
     </li>
     <li>
-      <a (click)="this.gotoGaleriaPage()">Galeria</a>
+      <a [ngClass]="{'active': this.checkIfPageIsActive('galeria')}" (click)="this.gotoGaleriaPage()">Galeria</a>
     </li>
   </ul>
 </nav>

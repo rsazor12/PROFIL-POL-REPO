@@ -6,19 +6,19 @@
 
   <nav class="breadcrumb">
     <a class="breadcrumb-item" href="#">Oferta</a>
-    <a class="breadcrumb-item" href="#">Garaze</a>
-    <a class="breadcrumb-item" href="#">{{this.itemDetails.itemName}}</a>
+    <a class="breadcrumb-item" href="#">Garaże</a>
+    <a class="breadcrumb-item" href="#">{{this.offerDetails.name}}</a>
   </nav>
 
   <div class="row">
     <div class="col-md-6">
-        <img class="image img-thumbnail rounded float-left" src={{this.itemDetails.imagePath}}>
+        <img class="image img-thumbnail rounded float-left" src={{this.offerDetails.imagePath}}>
     </div>
     <div class="col-md-6">
-      <h1 class="item-name ">{{this.itemDetails.itemName}}</h1>
-      <h1 class="price">{{this.itemDetails.price}} zl</h1>
+      <h1 class="item-name ">{{this.offerDetails.name}}</h1>
+      <h1 class="price">{{this.offerDetails.price}} zł</h1>
 
-      <h5 class="text-success" >Dostepny</h5>
+      <h5 class="text-success" >Dostępny</h5>
       <!-- <h5 *ngIf="this.itemDetails.available" class="text-success" >Dostepny</h5>
       <h5 *ngIf="!this.itemDetails.available" class="text-danger" >Niedostepny</h5> -->
 
@@ -28,22 +28,25 @@
           <span>Sztuk</span>
         </div>
         <div class="col-6">
-          <button type="button" class="btn btn-lg btn-success" [scrollTo]="'#form'" [scrollDuration]="500" [scrollOffset]="-100"  (click)="this.showOrderForm()">Zamow</button>
+          <button type="button" class="btn btn-lg btn-success" [scrollTo]="'#form'" [scrollDuration]="500" [scrollOffset]="-100"  (click)="this.showOrderForm()">Zamów</button>
         </div>
       </div>
-      <span class="text-muted">* dostawa w ciagu {{this.itemDetails.deliveryDays}} dni</span>
+      <!-- <span class="text-muted">* dostawa w ciagu {{this.itemDetails.deliveryDays}} dni</span> -->
       </div>
   </div>
 
   <div class="row opis">
-    <h3>Opis garazu</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur odit laboriosam deserunt, voluptatibus exercitationem, ipsum facilis veniam distinctio soluta facere ullam fuga error ad aperiam, perspiciatis accusantium doloribus repellendus provident!</p>
+    <h3>Opis garażu</h3>
+    <!-- <div style="margin-top:20px;">
+      <p>{{this.offerDetails.longDescription}}</p>
+    </div> -->
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero, iure tenetur? Voluptate ea accusantium modi adipisci, laboriosam perferendis enim odit cupiditate laborum quae. Deserunt, vitae consectetur. Quidem sint quo assumenda?</p>
   </div>
 
 
   <div id="form" class="">
     <form *ngIf="this.showForm" [formGroup]="this.orderForm" class="border" >
-        <h1 class="text-center pb-4 text-muted">Formularz zamowienia</h1>
+        <h1 class="text-center pb-4 text-muted">Formularz zamówienia</h1>
       <div *ngIf="!this.getCommonService().loginStatus" class="credentialForm">
           <div class="text-center form-row alert alert-warning" role="alert">
               Wpisz dane istniejacego konta lub zarejestruj sie ponizej.
@@ -66,7 +69,7 @@
               </div>
           </div>
       </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="inputAddress">Adres</label>
           <input formControlName="address" type="text" class="form-control" id="inputAddress" placeholder="Ulica + nr. domu">
           <div
@@ -74,15 +77,44 @@
            'd-none' : !orderForm.get('address').dirty || orderForm.get('address').valid  }">
            <small class="form-text">Podaj adres !</small>
           </div>
+        </div> -->
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputName">Imie</label>
+            <input formControlName="name" type="text" class="form-control" id="inputName">
+            <div
+            [ngClass]="{'text-danger' : !orderForm.get('name').valid && orderForm.get('name').dirty,
+            'd-none' : !orderForm.get('name').dirty || orderForm.get('name').valid }">
+            <small class="form-text">Podaj Imie !</small>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputSurname">Nazwisko</label>
+            <input formControlName="surname" type="text" class="form-control" id="inputSurname">
+            <div
+            [ngClass]="{'text-danger' : !orderForm.get('surname').valid && orderForm.get('surname').dirty,
+            'd-none' : !orderForm.get('surname').dirty || orderForm.get('surname').valid }">
+            <small class="form-text">Podaj nazwisko !</small>
+            </div>
+          </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label for="inputCity">Miasto</label>
+            <label for="inputCity">Miejscowość</label>
             <input formControlName="city" type="text" class="form-control" id="inputCity">
             <div
             [ngClass]="{'text-danger' : !orderForm.get('city').valid && orderForm.get('city').dirty,
             'd-none' : !orderForm.get('city').dirty || orderForm.get('city').valid }">
-            <small class="form-text">Podaj miasto !</small>
+            <small class="form-text">Podaj miejscowość !</small>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="inputHouseNumber">Nr domu</label>
+            <input formControlName="houseNumber" type="text" class="form-control" id="inputHouseNumber">
+            <div
+            [ngClass]="{'text-danger' : !orderForm.get('houseNumber').valid && orderForm.get('houseNumber').dirty,
+            'd-none' : !orderForm.get('houseNumber').dirty || orderForm.get('houseNumber').valid }">
+            <small class="form-text">Podaj Nr domu !</small>
             </div>
           </div>
           <div class="form-group col-md-3">
@@ -105,14 +137,39 @@
             <small class="form-text">Wybierz wojewodztwo !</small>
             </div>
           </div>
+          <div class="form-group col-md-6">
+            <label for="inputZipCode">Kod pocztowy</label>
+            <input formControlName="zipCode" type="text" class="form-control" id="inputZipCode">
+            <div
+            [ngClass]="{'text-danger' : !orderForm.get('zipCode').valid && orderForm.get('zipCode').dirty,
+            'd-none' : !orderForm.get('zipCode').dirty || orderForm.get('zipCode').valid }">
+            <small class="form-text">Podaj kod pocztowy !</small>
+            </div>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="inputPostCity">Miasto</label>
+            <input formControlName="postCity" type="text" class="form-control" id="inputPostCity">
+            <div
+            [ngClass]="{'text-danger' : !orderForm.get('postCity').valid && orderForm.get('postCity').dirty,
+            'd-none' : !orderForm.get('postCity').dirty || orderForm.get('postCity').valid }">
+            <small class="form-text">Podaj miasto !</small>
+            </div>
+          </div>
         </div>
 
-        Kolor:
+        Kolor blachy:
         <app-sheet-color (select)="this.onSelectSheetColor($event)" class="m-5">
         </app-sheet-color>
 
-        <app-garage-size (select)="this.onSelectGarageSize($event)" class="">
+        Typ blachy:
+        <app-sheet-type (select)="this.onSelectSheetType($event)" class="m-5">
+        </app-sheet-type>
+
+        <app-garage-size [sizes]="this.offerDetails.availableSizes" (select)="this.onSelectGarageSize($event)" class="">
         </app-garage-size>
+
+        <!-- <app-garage-size [sizes]="this.offerDetails.availableDoors.map(door => door.typeName)" (select)="this.onSelectGarageSize($event)" class="">
+        </app-garage-size> -->
 
         <div class="form-row">
           <span (click)="this.gotoKontaktPage()" class="text-center note">Pomysl na niestandardowy garaz? Przejdz do sekcji kontakt i napisz do nas!</span>

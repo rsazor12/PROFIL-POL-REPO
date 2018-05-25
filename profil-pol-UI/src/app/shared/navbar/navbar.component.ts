@@ -10,7 +10,7 @@ declare var $: any;
 })
 export class NavbarComponent implements OnInit {
 
-  public switchResponsiveMenu = false;
+  public actualSubpage = '';
 
   constructor(
     private router: Router,
@@ -34,11 +34,14 @@ export class NavbarComponent implements OnInit {
     });
   }
 
-  // switchToResponsiveMenu() {
-  //   // alert('switch');
-  //   //  this.switchResponsiveMenu = !this.switchResponsiveMenu;
 
-  // }
+  getCurrentUrl(): string {
+    return this.router.url;
+  }
+
+  checkIfPageIsActive(subpageName: string) {
+    return this.router.url.includes(subpageName);
+  }
 
   getCommonPageService(): CommonPageService {
     return this.commonPageService;

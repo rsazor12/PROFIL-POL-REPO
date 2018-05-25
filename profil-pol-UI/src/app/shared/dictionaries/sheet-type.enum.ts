@@ -1,5 +1,5 @@
 export enum SheetType {
-  normalna,
-  ocynk,
-  chropowana
+  Polysk = 'Połysk',
+  Matowy = 'Matowy',
+  Ocynk = 'Ocynk'
 }

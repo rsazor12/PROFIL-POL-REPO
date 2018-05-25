@@ -1,19 +1,24 @@
 <app-navbar></app-navbar>
 <div class="cantainer p-5 offer-content">
   <div class="row m-md-5">
-    <div *ngFor="let garage of this.garages; let i = index"
+    <div *ngFor="let offer of this.getOfferService().garageCardContentArray; let i = index"
           class="col-xs-12 col-sm-6 col-lg-4 mb-3">
 
       <app-garage-card
       class="card text-center" style = ""
-      [garageId]="garage.garageId"
-      [imagePath]="garage.imagePath"
-      [name]="garage.name"
-      [price]="garage.price"
-      [available]="garage.available"
-      [deliveryTime]="garage.deliveryTime"
-      [description]="garage.description"
-      [badgeContent]="garage.badgeContent"
+      [idOffer]="offer.idOffer"
+      [imagePath]="offer.imagePath"
+      [name]="offer.name"
+      [available]="offer.available"
+      [shortDescription]="offer.shortDescription"
+      [longDescription]="offer.longDescription"
+      [badgeColour]="offer.badgeColour"
+      [badgeContent]="offer.badgeContent"
+      [availableSizes]="offer.availableSizes"
+      [availableDoors]="offer.availableDoors"
+      [availableSheets]="offer.availableSheets"
+      [price]="offer.price"
+      [discount]="offer.price"
       >
       </app-garage-card>
     </div>

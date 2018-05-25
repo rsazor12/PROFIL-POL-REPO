@@ -93,6 +93,12 @@ nav .logo
   float: left;
 }
 
+nav .logo:hover
+{
+  cursor: pointer;
+  border: 1px solid black;
+}
+
 
 nav .logo img
 {

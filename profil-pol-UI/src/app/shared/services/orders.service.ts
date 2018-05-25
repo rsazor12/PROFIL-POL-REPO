@@ -5,6 +5,7 @@ import { SheetColor } from './../dictionaries/sheet-color.enum';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ProductionStatus } from '../dictionaries/production-status';
+import { environment } from '../../../environments/environment';
 // import { Order } from '../../shared/models/order';
 
 @Injectable()
@@ -17,7 +18,7 @@ export class OrdersService {
   public CreateOrder(order: MakeOrder): Observable<any> {
 
       // TODO use env here
-      const getUserDetailsUrl = 'http://localhost:51950/Order/';
+      const getUserDetailsUrl = environment.apiUrl + '/Orders';
       const httpOptions = {
         headers: new HttpHeaders({
           'Content-Type':  'application/json'

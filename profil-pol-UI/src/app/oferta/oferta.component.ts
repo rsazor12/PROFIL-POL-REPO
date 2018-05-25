@@ -1,5 +1,5 @@
 import { OfferService } from './../shared/services/offer.service';
-import { GarageCardContent } from './../shared/models/garage-card-content';
+import { OfferDetails } from './../shared/models/garage-card-content';
 import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-oferta',
@@ -8,19 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OfertaComponent implements OnInit {
 
-  public garages: GarageCardContent[]; // = garages;
+  public garagesOfferDetails: OfferDetails[];
   constructor(
     private offerService: OfferService
   ) { }
 
+  public getOfferService(): OfferService {
+    return this.offerService;
+  }
+
   // TODO error handling
   ngOnInit() {
-    this.offerService.getGarageOfferDetails()
-    .subscribe(
-      res => {
-        this.garages = res;
-      }
-    );
+    this.offerService.getGarageOfferDetails();
+    // .subscribe(
+    //   res => {
+    //     this.garagesOfferDetails = res;
+    //     this.offerService.garageCardContentArray = res;
+    //   }
+    // );
   }
 
 }

@@ -13,18 +13,18 @@ export class ItemDetailsService {
     private http: HttpClient
   ) { }
 
-  public getMockDetails(): ItemDetails {
-    return {
-      garageId: '00000000000000000000000000000001',
-      itemName: 'Garaz jednospadowy',
-      imagePath: '../../../assets/images/garages/20160603_084340_HDR.jpg',
-      price: 1200,
-      available: true,
-      deliveryDays: 5,
-      sheetColor: SheetColor.zlotyDab,
-      sheetType: SheetType.ocynk
-    } as ItemDetails;
-  }
+  // public getMockDetails(): ItemDetails {
+  //   return {
+  //     garageId: '00000000000000000000000000000001',
+  //     itemName: 'Garaz jednospadowy',
+  //     imagePath: '../../../assets/images/garages/20160603_084340_HDR.jpg',
+  //     price: 1200,
+  //     available: true,
+  //     deliveryDays: 5,
+  //     sheetColor: SheetColor.zlotyDab,
+  //     sheetType: SheetType.ocynk
+  //   } as ItemDetails;
+  // }
 
   getItemDetails(garageId: string): Observable<ItemDetails> {
 

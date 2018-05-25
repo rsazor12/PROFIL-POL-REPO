@@ -8,14 +8,20 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GarageCardComponent implements OnInit {
 
-  @Input() garageId: string;
+  @Input() idOffer: string;
   @Input() imagePath: string;
   @Input() name: string;
-  @Input() price: number;
-  @Input() available: string;
-  @Input() deliveryTime: string;
-  @Input() description: string;
+  @Input() available: boolean;
+  @Input() shortDescription: string;
+  @Input() longDescription: string;
+  @Input() badgeColour: string;
   @Input() badgeContent: string;
+  @Input() price: number;
+  @Input() discount: number;
+  @Input() availableSizes: any[];
+  @Input() availableDoors: any[];
+  @Input() availableSheets: any[];
+
 
   constructor(
     private router: Router
@@ -25,7 +31,10 @@ export class GarageCardComponent implements OnInit {
   }
 
   gotoItemDetailsPage() {
-    this.router.navigate(['item-details/' + this.garageId]);
+    this.router.navigate(['item-details/' + this.idOffer]);
+    // this.router.navigate(['item-details'], { queryParams: { idOffer: idOffer, imagePath: imagePath, name: name } });
+    // tslint:disable-next-line:max-line-length
+    // this.router.navigate(['/item-details', this.idOffer, this.imagePath, this.name, this.available, this.longDescription, this.price, this.availableSizes, this.availableDoors, this.availableSheets]);
   }
 
 }

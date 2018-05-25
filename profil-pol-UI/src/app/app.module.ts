@@ -53,6 +53,7 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { DialogModule } from '@progress/kendo-angular-dialog';
 import { GridEditFormComponent } from './admin-panel/grid-edit-form/grid-edit-form.component';
 import { EditService } from './admin-panel/edit.service';
+import { SheetTypeComponent } from './sheet-type/sheet-type.component';
 // import { EditService } from '@progress/kendo-angular-grid/dist/es/editing/edit.service';
 
 @NgModule({
@@ -76,7 +77,8 @@ import { EditService } from './admin-panel/edit.service';
     SheetColorComponent,
     GarageSizeComponent,
     AdminPanelComponent,
-    GridEditFormComponent
+    GridEditFormComponent,
+    SheetTypeComponent
   ],
   imports: [
     BrowserModule,
