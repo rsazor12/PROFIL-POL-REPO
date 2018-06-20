@@ -1,9 +1,11 @@
+import { environment } from './../../../environments/environment.prod';
+import { Credentials } from './../models/login/credentials';
+import { CredentialsFormComponent } from './../../item-details/credentials-form/credentials-form.component';
 import { ProductionStatusComponent } from './../../production-status/production-status.component';
 import { Injectable } from '@angular/core';
 // import { Http, Response, Headers, RequestOptions} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 // import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Login } from '../models/login/login';
 // import { RequestOptionsArgs } from '@angular/http/src/interfaces';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
@@ -14,9 +16,7 @@ import { catchError, retry } from 'rxjs/operators';
 @Injectable()
 export class LoginService {
 
-  baseUrl = 'http://localhost:51950';
   public isLogedIn: boolean = undefined;
-
 
   constructor(
     private http: HttpClient
@@ -29,9 +29,22 @@ export class LoginService {
         'Content-Type':  'application/json'
       })};
 
-      const loginCommand: Login = { Email: email, Password: password};
+      const loginCommand = { Email: email, Password: password};
       const loginData = JSON.stringify(loginCommand);
-      const url = 'http://localhost:51950/Account/login';
+      const url = environment.apiUrl + '/users/login';
+
+      return this.http.post(url, loginData, httpOptions);
+  }
+
+  // returns true if user credentials ok or user not exists OR false if wrong credentials
+  checkUserCredentialsForOrderForm(credentials: Credentials) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })};
+
+      const loginData = JSON.stringify(credentials);
+      const url = environment.apiUrl + '/users';
 
       return this.http.post(url, loginData, httpOptions);
   }

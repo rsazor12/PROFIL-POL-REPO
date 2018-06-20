@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { UserDetails } from './../models/userDetails';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -13,7 +14,7 @@ export class UserService {
   getUserDetailsByEmail(email: string) {
 
   // TODO use env here
-  const getUserDetailsUrl = 'http://localhost:51950/Account/';
+  const getUserDetailsUrl = environment.apiUrl + '/users';
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',

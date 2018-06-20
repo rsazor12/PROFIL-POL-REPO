@@ -34,25 +34,25 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.buildLoginForm();
   }
 
-  showSuccess() {
-    this.toastr.success('You are awesome!', 'Success!');
-  }
+  // showSuccess() {
+  //   this.toastr.success('You are awesome!', 'Success!');
+  // }
 
   showError() {
     this.toastr.error('Uzytkownik o pdanych danych nie istnieje, sprobuj ponownie!', 'Bledne dane!');
   }
 
-  showWarning() {
-    this.toastr.warning('You are being warned.', 'Alert!');
-  }
+  // showWarning() {
+  //   this.toastr.warning('You are being warned.', 'Alert!');
+  // }
 
-  showInfo() {
-    this.toastr.info('Just some information for you.');
-  }
+  // showInfo() {
+  //   this.toastr.info('Just some information for you.');
+  // }
 
-  showCustom() {
-    this.toastr.custom('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
-  }
+  // showCustom() {
+  //   this.toastr.custom('<span style="color: red">Message in red.</span>', null, {enableHTML: true});
+  // }
 
   getLoginService(): LoginService {
     return this.loginService;
@@ -90,7 +90,6 @@ export class LoginComponent implements OnInit {
         token => {
           localStorage.setItem('auth_token', token);
           this.loginService.isLogedIn = true;
-          this.showSuccess();
           this.userService.getUserDetailsByEmail(this.loginForm.get('email').value);
           // TODO obszywka
           if (this.routingHistoryService.getPreviousUrl() === 'admin-panel') {

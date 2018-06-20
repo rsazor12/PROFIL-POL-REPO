@@ -1,6 +1,13 @@
 <kendo-grid #grid
+[filterable]="true"
+[filter]="gridState.filter"
+[sortable]="true"
+[sort]="gridState.sort"
+[pageable]="true"
+[groupable]="true"
+[group]="gridState.group"
 [data]="view | async"
-[height]="533"
+[height]="800"
 [pageSize]="gridState.take" [skip]="gridState.skip" [sort]="gridState.sort"
 [pageable]="true" [sortable]="true"
 (dataStateChange)="onStateChange($event)"
@@ -21,8 +28,39 @@
 <kendo-grid-column field="UnitPrice" editor="numeric" title="Price"></kendo-grid-column>
 <kendo-grid-column field="Discontinued" editor="boolean" title="Discontinued"></kendo-grid-column>
 <kendo-grid-column field="UnitsInStock" editor="numeric" title="Units In Stock"></kendo-grid-column> -->
-<kendo-grid-column field="garageName" title="Nazwa garazu."></kendo-grid-column>
-<kendo-grid-column field="garageSizeX" title="Szerokosc" editor="numeric"></kendo-grid-column>
+<kendo-grid-column field="itemName" title="Nazwa garażu." editor='text'></kendo-grid-column>
+<kendo-grid-column field="userName" title="Imię"></kendo-grid-column>
+<kendo-grid-column field="surname" title="Nazwisko" editor='text'></kendo-grid-column>
+<kendo-grid-column field="street" title="Miejscowość"></kendo-grid-column>
+<kendo-grid-column field="houseNumber" title="Nr. domu"></kendo-grid-column>
+<kendo-grid-column field="zipNumber" title="Kod pocztowy"></kendo-grid-column>
+<kendo-grid-column field="location" title="Województwo"></kendo-grid-column>
+<kendo-grid-column field="city" title="Miasto Pocztowe"></kendo-grid-column>
+<kendo-grid-column field="email" title="Email"></kendo-grid-column>
+<kendo-grid-column field="telephoneNumber" title="Telefon"></kendo-grid-column>
+
+<kendo-grid-column field="xLength" title="Szerokość"></kendo-grid-column>
+<kendo-grid-column field="yLength" title="Długość"></kendo-grid-column>
+<kendo-grid-column field="zLength" title="Wysokość"></kendo-grid-column>
+<kendo-grid-column field="colorName" title="Kolor"></kendo-grid-column>
+<kendo-grid-column field="sheetType" title="Typ blachy"></kendo-grid-column>
+<kendo-grid-column field="doorType" title="Typ drzwi"></kendo-grid-column>
+<kendo-grid-column field="price" title="Cena"></kendo-grid-column>
+<kendo-grid-column field="productionStatus" title="Status Produkcji">
+  <ng-template  kendoGridEditTemplate let-dataItem="dataItem">
+    <kendo-dropdownlist
+    [data]="listItemsToDropDown"
+    (valueChange)="onChangeDropDown($event)"
+    >
+        <ng-template  kendoDropDownListItemTemplate let-dataItem>
+            {{ dataItem }}
+        </ng-template>
+    </kendo-dropdownlist>
+</ng-template>
+</kendo-grid-column>
+<kendo-grid-column field="kindOfPayment" title="Rodzaj płatności"></kendo-grid-column>
+<kendo-grid-column field="paymentStatus" title="Status płatności"></kendo-grid-column>
+<!-- <kendo-grid-column field="garageSizeX" title="Szerokosc" editor="numeric"></kendo-grid-column>
 <kendo-grid-column field="garageSizeY" title="Dlugosc" editor="numeric"></kendo-grid-column>
 <kendo-grid-column field="garageSizeZ" title="Wysokosc" editor="numeric"></kendo-grid-column>
 <kendo-grid-column field="price" title="Cena"></kendo-grid-column>
@@ -33,7 +71,7 @@
 <kendo-grid-column field="userSurname" title="Nazwisko"></kendo-grid-column>
 <kendo-grid-column field="userEmail" title="Email"></kendo-grid-column>
 <kendo-grid-column field="adress" title="Adres"></kendo-grid-column>
-<kendo-grid-column field="city" title="Miasto"></kendo-grid-column>
+<kendo-grid-column field="city" title="Miasto"></kendo-grid-column>-->
 <kendo-grid-column field="location" title="Wojewodztwo"></kendo-grid-column>
 <kendo-grid-command-column title="command" width="220">
   <ng-template kendoGridCellTemplate let-isNew="isNew">

@@ -19,27 +19,31 @@
     <div class="container border p-5" *ngFor="let order of this.orders; let i = index">
       <div class="row">
           <div class="col-md-6">
-            <img class="image img-thumbnail rounded float-left" src={{this.order.imagePath}}>
+            <img class="image img-thumbnail rounded float-left" src={{order.imagePath}}>
 
           </div>
           <div class="col-md-6">
-            <h2 class="item-name ">{{this.order.garageName}}</h2>
-            <span>(nr. zamowienia {{this.order.garageId}})</span>
+            <h2 class="item-name ">{{this.order.itemName}}</h2>
+            <span>(nr. zamowienia {{this.order.idOrder}})</span>
             <h3 class="price">{{this.order.price}} zl</h3>
-            <h4 class="sizes">Wymiary: {{this.order.garageSizeX}} x {{this.order.garageSizeY}} x {{this.order.garageSizeZ}}</h4>
-            <h4 class="sheet-color">Kolor: {{this.mapIndexToEnumValue(this.order.sheetColor)}}</h4>
-            <span class="order-date">Data Zamowienia: {{this.order.orderDate}}</span>
-            <span class="address">Adres: {{this.order.adress}}</span>
-            <span class="city">Miasto: {{this.order.city}}</span>
+            <h4 class="sizes">Wymiary: {{this.order.xLength}} x {{this.order.yLength}} x {{this.order.zLength}}</h4>
+            <h4 class="sheet-color">Kolor: {{this.mapIndexToEnumValue(this.order.colorName)}}</h4>
+            <span class="order-date">Data Zamowienia: {{this.order.dateOfOrder}}</span>
+            <span class="city">Miejscowosc: {{this.order.street}}</span>
             <span class="location">Wojewodztwo: {{this.order.location}}</span>
+            <span class="houseNumber">Nr. domu: {{this.order.houseNumber}}</span><br/>
+            <span class="zipCode">Kod pocztowy: {{this.order.zipNumber}}</span>
+            <span class="postCity">Miasto: {{this.order.city}}</span>
+            <span class="telephone">Telefon: {{this.order.telephoneNumber}}</span>
+            <span class="email">Email: {{this.order.email}}</span>
             <h4 class="production-status">Status produkcji:</h4>
-            <div *ngIf="this.order.productionStatus === 0" class="alert alert-info" role="alert">
+            <div *ngIf="this.order.productionStatus === 'Rozpoczete'" class="alert alert-info" role="alert">
                 Zamowienie zlozone! Oczekuj na nasz kontakt.
             </div>
-            <div *ngIf="this.order.productionStatus === 1" class="alert alert-warning" role="alert">
+            <div *ngIf="this.order.productionStatus === 'W trakcie'" class="alert alert-warning" role="alert">
                 Zamowienie w trakcie realizacji.
             </div>
-            <div *ngIf="this.order.productionStatus === 2" class="alert alert-success" role="alert">
+            <div *ngIf="this.order.productionStatus === 'Wykonane'" class="alert alert-success" role="alert">
                 Zamowienie skonczone!
             </div>
 

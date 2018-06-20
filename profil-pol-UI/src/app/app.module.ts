@@ -54,6 +54,9 @@ import { DialogModule } from '@progress/kendo-angular-dialog';
 import { GridEditFormComponent } from './admin-panel/grid-edit-form/grid-edit-form.component';
 import { EditService } from './admin-panel/edit.service';
 import { SheetTypeComponent } from './sheet-type/sheet-type.component';
+
+import { CredentialsFormComponent } from './item-details/credentials-form/credentials-form.component';
+
 // import { EditService } from '@progress/kendo-angular-grid/dist/es/editing/edit.service';
 
 @NgModule({
@@ -78,7 +81,8 @@ import { SheetTypeComponent } from './sheet-type/sheet-type.component';
     GarageSizeComponent,
     AdminPanelComponent,
     GridEditFormComponent,
-    SheetTypeComponent
+    SheetTypeComponent,
+    CredentialsFormComponent
   ],
   imports: [
     BrowserModule,

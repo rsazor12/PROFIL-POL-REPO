@@ -94,7 +94,7 @@ export class EditService extends BehaviorSubject<any[]> {
     }
 
     public isNew(item: GetOrderInfo): boolean {
-        return !item.orderId;
+        return !item.idOrder;
     }
 
     public hasChanges(): boolean {
@@ -109,7 +109,7 @@ export class EditService extends BehaviorSubject<any[]> {
         const completed = [];
         if (this.deletedItems.length) {
             // completed.push(this.fetch(REMOVE_ACTION, this.deletedItems));
-            completed.push(this.ordersService.removeOrders(this.deletedItems.map(order => order.orderId)));
+            completed.push(this.ordersService.removeOrders(this.deletedItems.map(order => order.idOrder)));
         }
 
         if (this.updatedItems.length) {

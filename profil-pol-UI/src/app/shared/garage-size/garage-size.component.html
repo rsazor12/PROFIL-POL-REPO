@@ -1,0 +1,9 @@
+<div class="form-group">
+  <label for="sel1">Rozmiar:</label>
+  <select (change)="this.onSelect($event)" class="form-control" id="sel1">
+    <option *ngFor="let size of this.sizes">
+      {{size.xLength + ' x ' + size.yLength + ' x ' + size.zLength}}
+    </option>
+  </select>
+  <small>Format: szerokosc x dlugosc x wysokosc )</small>
+</div>

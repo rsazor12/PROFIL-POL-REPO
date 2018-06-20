@@ -47,8 +47,9 @@
   <div id="form" class="">
     <form *ngIf="this.showForm" [formGroup]="this.orderForm" class="border" >
         <h1 class="text-center pb-4 text-muted">Formularz zamówienia</h1>
-      <div *ngIf="!this.getCommonService().loginStatus" class="credentialForm">
-          <div class="text-center form-row alert alert-warning" role="alert">
+      <!-- <div *ngIf="!this.getCommonService().loginStatus" class="credentialForm"> -->
+      <div class="credentialForm">
+          <!-- <div class="text-center form-row alert alert-warning" role="alert">
               Wpisz dane istniejacego konta lub zarejestruj sie ponizej.
           </div>
           <div class="form-row">
@@ -60,14 +61,14 @@
                  'd-none' : !orderForm.get('email').dirty || orderForm.get('email').valid }">
                  <small class="form-text">Email Niepoprawny !</small>
                 </div>
-                <!-- <small class="form-text text-muted">Wymagane do sekcji Moje Zamowienia</small> -->
               </div>
               <div class="form-group col-md-6">
                 <label for="inputPassword4">Haslo</label>
                 <input formControlName="password" type="password" class="form-control" id="inputPassword4" placeholder="haslo">
-                <!-- <small class="form-text text-muted">Wpisz jesli chcesz zabezpieczyc zamowienie</small> -->
               </div>
-          </div>
+          </div> -->
+          <app-credentials-form (credentials)="this.getCredentials($event)" (credentialsOK)="this.onCredentialsFilled($event)"></app-credentials-form>
+
       </div>
         <!-- <div class="form-group">
           <label for="inputAddress">Adres</label>
@@ -138,6 +139,15 @@
             </div>
           </div>
           <div class="form-group col-md-6">
+              <label for="inputTelephoneNumber">Numer telefonu</label>
+              <input formControlName="telephoneNumber" type="text" class="form-control" id="inputTelephoneNumber">
+              <div
+              [ngClass]="{'text-danger' : !orderForm.get('telephoneNumber').valid && orderForm.get('telephoneNumber').dirty,
+              'd-none' : !orderForm.get('telephoneNumber').dirty || orderForm.get('telephoneNumber').valid }">
+              <small class="form-text">Podaj numer telefonu !</small>
+              </div>
+            </div>
+          <div class="form-group col-md-3">
             <label for="inputZipCode">Kod pocztowy</label>
             <input formControlName="zipCode" type="text" class="form-control" id="inputZipCode">
             <div
@@ -155,6 +165,7 @@
             <small class="form-text">Podaj miasto !</small>
             </div>
           </div>
+
         </div>
 
         Kolor blachy:
@@ -175,7 +186,8 @@
           <span (click)="this.gotoKontaktPage()" class="text-center note">Pomysl na niestandardowy garaz? Przejdz do sekcji kontakt i napisz do nas!</span>
         </div>
 
-        <button (click) = "this.makeOrder()" [disabled]="orderForm.invalid" type="submit" class="btn btn-success btn-lg mt-3">Zloz zamowienie</button>
+        <!-- <button (click) = "this.makeOrder()" [disabled]="orderForm.invalid || !this.credentialFormStatus" type="submit" class="btn btn-success btn-lg mt-3">Złóż zamówienie</button> -->
+        <button (click) = "this.onCreateOrder()" class="btn btn-success btn-lg mt-3">Złóż zamówienie</button>
       </form>
 
       <!-- <pre> {{ orderForm.value | json}}</pre>

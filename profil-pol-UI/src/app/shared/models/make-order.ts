@@ -11,14 +11,15 @@ export interface MakeOrder {
   Location: string;
   ZipCode: string;
   HouseNumber: string;
+  TelephoneNumber: string;
   // item details
   OfferId: string;
   Price: number;
   XLength: number;
   YLength: number;
   ZLength: number;
-  SheetColor: number;
-  SheetType: number;
+  SheetColor: string;
+  SheetType: string;
   DoorType: string;
   DoorXLength: number;
   DoorYLength: number;

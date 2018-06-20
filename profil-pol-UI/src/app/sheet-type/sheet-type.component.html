@@ -1,0 +1,9 @@
+<div class="d-flex flex-row">
+  <div *ngFor="let typeAndPath of this.typesAndPaths; let i = index" class="m-2">
+      <!-- <img class="image img-thumbnail rounded float-left" src={{colorImage}}> -->
+      <figure (click)="this.onSheetTypeSelect(typeAndPath)" class="figure text-center">
+        <img src="{{typeAndPath.imagePath}}"[ngClass]="{'box' : typeAndPath.selected}" class="image figure-img img-fluid rounded" alt="zdjecie typu niedostepne..">
+        <figcaption class="figure-caption">{{typeAndPath.sheetType}}</figcaption>
+      </figure>
+  </div>
+</div>

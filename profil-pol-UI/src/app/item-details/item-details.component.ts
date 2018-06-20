@@ -1,3 +1,5 @@
+import { Credentials } from './../shared/models/login/credentials';
+import { CredentialsFormComponent } from './credentials-form/credentials-form.component';
 import { OfferDetails } from './../shared/models/garage-card-content';
 import { OfferService} from './../shared/services/offer.service';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
@@ -19,31 +21,26 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { SheetType } from '../shared/dictionaries/sheet-type.enum';
+import { ViewChild } from '@angular/core';
 
 @Component({
+  providers: [CredentialsFormComponent],
   selector: 'app-item-details',
   templateUrl: './item-details.component.html',
   styleUrls: ['./item-details.component.scss']
 })
 export class ItemDetailsComponent implements OnInit, OnDestroy {
 
-  // public garageId: number;
+ @ViewChild('app-credentials-form') credentialFormComponent: CredentialsFormComponent;
 
-  // public itemDetails: ItemDetails;
+
 
   public idOffer: string;
   public offerDetails: OfferDetails;
-  // public imagePath: string;
-  // public name: string;
-  // public available: boolean;
-  // public longDescription: string;
-  // public price: string;
-  // public availableSizes: any[];
-  // public availableDoors: any[];
-  // public availableSheets: any[];
-
+  public credentials: Credentials;
 
   public showForm: boolean;
+  public credentialFormStatus: boolean;
   public orderForm: FormGroup;
 
   public selectedSheetColor: SheetColor = SheetColor.zlotyDab;
@@ -74,34 +71,14 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     this.showForm = false;
     this.orderForm = this.buildOrderForm();
 
-
-    // get item details
-
     this.sub = this.routeLink.params.subscribe(params => {
       this.idOffer = params['idOffer'];
 
       this.initOfferDetails();
-      // this.imagePath = params['imagePath'];
-      // this.name = params['name'];
-      // this.available = params['available'];
-      // this.longDescription = params['longDescription'];
-      // this.price = params['price'];
-      // this.availableSizes = params['availableSizes'];
-      // this.availableDoors = params['availableDoors'];
-      // this.availableSheets = params['availableSheets'];
     });
-
-    // this.sub = this.routeLink.params.subscribe(params => {
-    //       this.subItemDetails = this.itemDetailsService.getItemDetails(params['id'])
-    //         .subscribe(res =>
-    //           this.itemDetails = res
-    //           );
-    // });
   }
 
   ngOnDestroy() {
-   // this.sub.unsubscribe();
-   // this.subItemDetails.unsubscribe();
   }
 
   public initOfferDetails() {
@@ -133,6 +110,11 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     this.showForm = !this.showForm;
   }
 
+  onCredentialsFilled(credentialFormStatus: boolean) {
+    this.credentialFormStatus = credentialFormStatus;
+    console.log(credentialFormStatus);
+  }
+
   public onSelectSheetColor(sheetColor: SheetColor) {
     this.selectedSheetColor = sheetColor;
   }
@@ -146,10 +128,11 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     console.log(size);
   }
 
+
   buildOrderForm() {
       return this.formBuilder.group({
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required]],
+        // email: ['', [Validators.required, Validators.email]],
+        // password: ['', [Validators.required]],
         name: ['', [Validators.required]],
         surname: ['', [Validators.required]],
         city: ['', Validators.required],
@@ -157,7 +140,20 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
         location: ['', Validators.required],
         zipCode: ['', Validators.required],
         postCity: ['', [Validators.required]],
+        telephoneNumber: ['', [Validators.required]],
       });
+  }
+
+  public onCreateOrder() {
+    // this.credentialFormComponent.checkEmailAndPassword();
+
+    if (this.credentialFormStatus && this.orderForm.valid) {
+      this.makeOrder();
+    }
+  }
+
+  public getCredentials($credentials: Credentials) {
+    this.credentials = $credentials;
   }
 
   public makeOrder() {
@@ -166,13 +162,17 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     const order: MakeOrder = {} as MakeOrder;
     order.UserName = this.orderForm.get('name').value;
     order.UserSurname = this.orderForm.get('surname').value;
-    order.UserEmail = this.orderForm.get('email').value;
-    order.Password = this.orderForm.get('password').value;
+    order.UserEmail = this.credentials.Email;
+    order.Password = this.credentials.Password;
+    // TODO fill
+    // order.UserEmail = this.orderForm.get('email').value;
+    // order.Password = this.orderForm.get('password').value;
     order.City = this.orderForm.get('city').value;
     order.PostCity = this.orderForm.get('postCity').value;
     order.Location = this.orderForm.get('location').value;
     order.ZipCode = this.orderForm.get('zipCode').value;
     order.HouseNumber = this.orderForm.get('houseNumber').value;
+    order.TelephoneNumber = this.orderForm.get('telephoneNumber').value;
     // item details
     // order.GarageId = this.itemDetails.garageId;
     // order.Price = this.itemDetails.price;
@@ -181,8 +181,8 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     order.XLength = +this.selectedGarageSize.xLength;
     order.YLength = +this.selectedGarageSize.yLength;
     order.ZLength = +this.selectedGarageSize.zLength;
-    order.SheetColor = this.mapSheetColor(this.selectedSheetColor);
-    order.SheetType = this.mapSheetType(this.selectedSheetType);
+    order.SheetColor = this.selectedSheetColor;
+    order.SheetType = this.selectedSheetType;
     order.DoorType = 'niezdefiniowane';
     order.DoorXLength = 0;
     order.DoorYLength = 0;
@@ -240,6 +240,8 @@ export class ItemDetailsComponent implements OnInit, OnDestroy {
     return new ErrorObservable(
       'Something bad happened; please try again later.');
   }
+
+
 
 
 }

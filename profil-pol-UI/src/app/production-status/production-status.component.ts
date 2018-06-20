@@ -26,7 +26,7 @@ export class ProductionStatusComponent implements OnInit {
   ngOnInit() {
     // this.orders = this.ordersService.getFakeOrders();
     this.ordersService
-    .getOrdersInfo(this.userService.userDetails.id)
+    .getOrdersInfo(this.userService.userDetails.email)
     .subscribe(
       res => this.orders = res
     );

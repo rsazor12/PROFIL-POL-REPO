@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 import { Email } from './../models/contact/email';
 import { Injectable } from '@angular/core';
@@ -13,7 +14,7 @@ export class ContactService {
   sendEmail(email: Email) {
 
     // TODO use env here
-    const sendEmailUrl = 'http://localhost:51950/Account/SendEmail';
+    const sendEmailUrl = environment.apiUrl + '/users/SendEmail';
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'

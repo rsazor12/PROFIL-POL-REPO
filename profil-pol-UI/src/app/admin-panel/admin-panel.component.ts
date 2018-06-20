@@ -1,3 +1,4 @@
+import { ProductionStatus } from './../shared/dictionaries/production-status';
 import { SheetColor } from './../shared/dictionaries/sheet-color.enum';
 import { GetOrderInfo } from './../shared/models/get-order-info';
 import { UserService } from './../shared/services/user.service';
@@ -9,7 +10,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { GridDataResult } from '@progress/kendo-angular-grid';
 import { State, process } from '@progress/kendo-data-query';
 
-import { Product } from './grid-edit-form/model';
+import { GetOrderInfoClass } from './grid-edit-form/model';
 import { EditService } from './edit.service';
 
 import { map } from 'rxjs/operators/map';
@@ -20,11 +21,16 @@ import { map } from 'rxjs/operators/map';
   styleUrls: ['./admin-panel.component.scss']
 })
 export class AdminPanelComponent implements OnInit {
+
+  public listItemsToDropDown: Array<string> = ['Rozpoczete', 'W trakcie', 'Wykonane'];
+  public formGroup: FormGroup;
+
   public view: Observable<GridDataResult>;
   public gridState: State = {
       sort: [],
       skip: 0,
-      take: 10
+      take: 10,
+      group: []
   };
 
   public changes: any = {};
@@ -49,6 +55,13 @@ export class AdminPanelComponent implements OnInit {
 
       this.editService.read();
   }
+
+  public onChangeDropDown(newValue) {
+         this.formGroup.get('productionStatus').setValue(newValue);
+         this.formGroup.markAsDirty();
+         this.view['destination']['value'][0]['productionStatus'] = newValue;
+         // this.orderForm.get('postCity').value
+    }
 
   public onStateChange(state: State) {
       this.gridState = state;
@@ -75,7 +88,7 @@ export class AdminPanelComponent implements OnInit {
   }
 
   public addHandler({ sender }) {
-      sender.addRow(this.createFormGroup(new Product()));
+      sender.addRow(this.createFormGroup(new GetOrderInfoClass()));
   }
 
   public cancelHandler({ sender, rowIndex }) {
@@ -109,23 +122,44 @@ export class AdminPanelComponent implements OnInit {
   }
 
   // TODO change model of this function
-  public createFormGroup(dataItem: any): FormGroup {
-      return this.formBuilder.group({
-          'garageName': dataItem.garageName,
-          'garageSizeX': dataItem.garageSizeX, // [dataItem.garageSizeX, Validators.required],
-          'garageSizeY': dataItem.garageSizeY, // [dataItem.garageSizeY, Validators.required],
-          'garageSizeZ': dataItem.garageSizeZ, // [dataItem.garageSizeZ, Validators.required],
-          'price': dataItem.price,
-          // tslint:disable-next-line:max-line-length
-          'sheetColor': dataItem.SheetColor, // [dataItem.sheetColor, Validators.compose([Validators.required/*, Validators.pattern('')]*/])], // TODO values from enum
-          'productionStatus': dataItem.productionStatus,
-          'orderDate': dataItem.orderDate,
+  public createFormGroup(dataItem: GetOrderInfo): FormGroup {
+      return this.formGroup = this.formBuilder.group({
+          'itemName': dataItem.itemName,
           'userName': dataItem.userName,
-          'userSurname': dataItem.userSurname,
-          'userEmail': dataItem.userEmail,
-          'adress': dataItem.adress,
+          'surname': dataItem.surname,
+          'street': dataItem.street,
+          'houseNumber': dataItem.houseNumber,
+          'zipNumber': dataItem.zipNumber,
+          'location': dataItem.location,
           'city': dataItem.city,
-          'location' : dataItem.location
+          'telephoneNumber': dataItem.telephoneNumber,
+          'doorType': dataItem.doorType,
+          'email': dataItem.email,
+          'xLength': dataItem.xLength,
+          'yLength': dataItem.yLength,
+          'zLength': dataItem.zLength,
+          'colorName': dataItem.colorName,
+          'sheetType': dataItem.sheetType,
+          'price': dataItem.price,
+          'productionStatus': dataItem.productionStatus,
+          'kindOfPayment': dataItem.kindOfPayment,
+          'paymentStatus': dataItem.paymentStatus,
+
+          // 'garageName': dataItem.garageName,
+          // 'garageSizeX': dataItem.garageSizeX, // [dataItem.garageSizeX, Validators.required],
+          // 'garageSizeY': dataItem.garageSizeY, // [dataItem.garageSizeY, Validators.required],
+          // 'garageSizeZ': dataItem.garageSizeZ, // [dataItem.garageSizeZ, Validators.required],
+          // 'price': dataItem.price,
+          // // tslint:disable-next-line:max-line-length
+          // 'sheetColor': dataItem.SheetColor, // [dataItem.sheetColor, Validators.compose([Validators.required/*, Validators.pattern('')]*/])], // TODO values from enum
+          // 'productionStatus': dataItem.productionStatus,
+          // 'orderDate': dataItem.orderDate,
+          // 'userName': dataItem.userName,
+          // 'userSurname': dataItem.userSurname,
+          // 'userEmail': dataItem.userEmail,
+          // 'adress': dataItem.adress,
+          // 'city': dataItem.city,
+          // 'location' : dataItem.location
       });
   }
 

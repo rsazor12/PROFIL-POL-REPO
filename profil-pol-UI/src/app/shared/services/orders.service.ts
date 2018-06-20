@@ -1,3 +1,4 @@
+import { environment } from './../../../environments/environment.prod';
 import { GetOrderInfo } from './../models/get-order-info';
 import { MakeOrder } from './../models/make-order';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
@@ -5,7 +6,6 @@ import { SheetColor } from './../dictionaries/sheet-color.enum';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ProductionStatus } from '../dictionaries/production-status';
-import { environment } from '../../../environments/environment';
 // import { Order } from '../../shared/models/order';
 
 @Injectable()
@@ -30,10 +30,10 @@ export class OrdersService {
         return this.http.post<any>(getUserDetailsUrl, createOrderCommand, httpOptions);
   }
 
-  public CreateOrders(orders: MakeOrder[]): Observable<any> {
+  public CreateOrders(orders: GetOrderInfo[]): Observable<any> {
 
     // TODO use env here
-    const getUserDetailsUrl = 'http://localhost:51950/Order/CreateOrders';
+    const getUserDetailsUrl = environment.apiUrl + '/orders/CreateOrders';
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -47,7 +47,7 @@ export class OrdersService {
 
 public UpdateOrders(orders: GetOrderInfo[]) {
   // TODO use env here
-  const getUserDetailsUrl = 'http://localhost:51950/order/UpdateOrders';
+  const getUserDetailsUrl = environment.apiUrl + '/orders/UpdateOrders';
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -61,7 +61,7 @@ public UpdateOrders(orders: GetOrderInfo[]) {
 
 public removeOrders(ids: string[]) {
     // TODO use env here
-    const getUserDetailsUrl = 'http://localhost:51950/order/RemoveOrders';
+    const getUserDetailsUrl = environment.apiUrl + '/orders/RemoveOrders';
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -73,17 +73,17 @@ public removeOrders(ids: string[]) {
       return this.http.post<GetOrderInfo[]>(getUserDetailsUrl, getOrdersCommand, httpOptions);
 }
 
-  public getOrdersInfo(userId: string): Observable<GetOrderInfo[]> {
+  public getOrdersInfo(email: string): Observable<GetOrderInfo[]> {
 
     // TODO use env here
-    const getUserDetailsUrl = 'http://localhost:51950/Order/GetOrdersInfo';
+    const getUserDetailsUrl = environment.apiUrl + '/orders/GetOrdersInfo';
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
       })
     };
 
-      const getOrdersCommand = JSON.stringify({UserId: userId});
+      const getOrdersCommand = JSON.stringify({Email: email});
 
       return this.http.post<GetOrderInfo[]>(getUserDetailsUrl, getOrdersCommand, httpOptions);
 
@@ -92,7 +92,7 @@ public removeOrders(ids: string[]) {
   public getAllOrdersInfo(): Observable<GetOrderInfo[]> {
 
     // TODO use env here
-    const getUserDetailsUrl = 'http://localhost:51950/Order';
+    const getUserDetailsUrl = environment.apiUrl + '/orders' ;
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
